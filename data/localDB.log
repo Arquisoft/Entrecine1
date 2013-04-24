@@ -1,11 +1,19 @@
-/*C2*/SET SCHEMA PUBLIC
+/*C1*/SET SCHEMA PUBLIC
 CONNECT USER SA
-drop table movie\u000a
-drop table session\u000a\u000a
-drop table type\u000a\u000a
+DROP TABLE PLACE
+\u000aDROP TABLE SESSION
+\u000aDROP TABLE SESSIONTYPE
+\u000aDROP TABLE CUSTOMER
+\u000aDROP TABLE MOVIE
+\u000aDROP TABLE ROOM
+\u000aDROP TABLE SYSTEMUSER
 CREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
 \u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME TIME,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
-\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aPRIMARY KEY (ID))
+DROP TABLE ROOM
+DROP TABLE SESSIONTYPE
+CREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME TIME,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25) NOT NULL,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
 \u000a\u000aCREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aCATEGORY VARCHAR(25),\u000aSYNOPSIS LONGVARCHAR,\u000aPRIMARY KEY (ID))
 \u000a\u000aCREATE TABLE SESSION\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_ROOM INTEGER,\u000aID_MOVIE INTEGER,\u000aID_SESSIONTYPE INTEGER,\u000aSTARTDATE DATE,\u000aENDDATE DATE,\u000aPRIMARY KEY (ID))
 \u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_ROOM) \u000aREFERENCES ROOM(ID)
@@ -15,26 +23,72 @@ CREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u
 \u000a\u000aALTER TABLE PLACE\u000aADD FOREIGN KEY (ID_SESSION) \u000aREFERENCES SESSION(ID)
 \u000a\u000aALTER TABLE PUBLIC.PLACE\u000aADD FOREIGN KEY (ID_CUSTOMER) \u000aREFERENCES CUSTOMER(ID)
 \u000a\u000aCREATE TABLE SYSTEMUSER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aTYPE VARCHAR(25),\u000aMSALE BOOLEAN,\u000aMSESSION BOOLEAN,\u000aMMOVIES BOOLEAN,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
-INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE',NULL)
-DELETE FROM CUSTOMER WHERE ID=0
-INSERT INTO CUSTOMER VALUES(1,'TVP','TVP','TVP@ENTRECINE','')
 INSERT INTO SYSTEMUSER VALUES(0,'admin','admin','admin',TRUE,TRUE,TRUE)
 INSERT INTO SYSTEMUSER VALUES(1,'user','user','user',TRUE,FALSE,FALSE)
+INSERT INTO SYSTEMUSER VALUES(2,'user2','user2','user',TRUE,TRUE,FALSE)
+INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','','','')
+INSERT INTO CUSTOMER VALUES(1,'carlos','duarte','carlos@entrecine','1234','carlos','carlos')
+INSERT INTO CUSTOMER VALUES(2,'maria','gallego','maria@entrecine','1234','maria','maria')
+INSERT INTO CUSTOMER VALUES(3,'diego','barrantes','diego@entrecine','1234','diego','diego')
+INSERT INTO CUSTOMER VALUES(4,'benjamin','antomil','benjamil@entrecine','1234','benjamil','benjamil')
+INSERT INTO CUSTOMER VALUES(5,'daniel','garcia','daniel@entrecine','1234','daniel','daniel')
+INSERT INTO ROOM VALUES(0,'room1',30)
+INSERT INTO ROOM VALUES(1,'room2',30)
+INSERT INTO ROOM VALUES(2,'room3',40)
+INSERT INTO ROOM VALUES(3,'room4',40)
+INSERT INTO ROOM VALUES(4,'room5',50)
+INSERT INTO SESSIONTYPE VALUES(0,'ma\u00f1ana','12:00:00',12.0E0)
+INSERT INTO SESSIONTYPE VALUES(1,'media-tarde','17:00:00',15.0E0)
+INSERT INTO SESSIONTYPE VALUES(2,'tarde','20:00:00',16.0E0)
+INSERT INTO SESSIONTYPE VALUES(3,'tarde-noche','22:00:00',15.0E0)
 DROP TABLE PLACE
 \u000aDROP TABLE SESSION
 \u000aDROP TABLE SESSIONTYPE
+\u000aDROP TABLE CUSTOMER
+\u000aDROP TABLE MOVIE
+\u000aDROP TABLE ROOM
+\u000aDROP TABLE SYSTEMUSER
+CREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME INTEGER,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25) NOT NULL,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
+\u000a\u000aCREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aCATEGORY VARCHAR(25),\u000aSYNOPSIS LONGVARCHAR,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSION\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_ROOM INTEGER,\u000aID_MOVIE INTEGER,\u000aID_SESSIONTYPE INTEGER,\u000aSTARTDATE DATE,\u000aENDDATE DATE,\u000aPRIMARY KEY (ID))
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_ROOM) \u000aREFERENCES ROOM(ID)
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_MOVIE) \u000aREFERENCES MOVIE(ID)
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_SESSIONTYPE) \u000aREFERENCES SESSIONTYPE(ID)
+\u000a\u000aCREATE TABLE PLACE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_SESSION INTEGER,\u000aROWSEAT INTEGER,\u000aSEAT INTEGER,\u000aID_CUSTOMER INTEGER,\u000aCREDITCARD VARCHAR(25),\u000aAMOUNT DOUBLE,\u000aPAYMENTDATE DATE,\u000aPRIMARY KEY (ID))
+\u000a\u000aALTER TABLE PLACE\u000aADD FOREIGN KEY (ID_SESSION) \u000aREFERENCES SESSION(ID)
+\u000a\u000aALTER TABLE PUBLIC.PLACE\u000aADD FOREIGN KEY (ID_CUSTOMER) \u000aREFERENCES CUSTOMER(ID)
+\u000a\u000aCREATE TABLE SYSTEMUSER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aTYPE VARCHAR(25),\u000aMSALE BOOLEAN,\u000aMSESSION BOOLEAN,\u000aMMOVIES BOOLEAN,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
+INSERT INTO SYSTEMUSER VALUES(0,'admin','admin','admin',TRUE,TRUE,TRUE)
+INSERT INTO SYSTEMUSER VALUES(1,'user','user','user',TRUE,FALSE,FALSE)
+INSERT INTO SYSTEMUSER VALUES(2,'user2','user2','user',TRUE,TRUE,FALSE)
+INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','','','')
+INSERT INTO CUSTOMER VALUES(1,'carlos','duarte','carlos@entrecine','1234','carlos','carlos')
+INSERT INTO CUSTOMER VALUES(2,'maria','gallego','maria@entrecine','1234','maria','maria')
+INSERT INTO CUSTOMER VALUES(3,'diego','barrantes','diego@entrecine','1234','diego','diego')
+INSERT INTO CUSTOMER VALUES(4,'benjamin','antomil','benjamil@entrecine','1234','benjamil','benjamil')
+INSERT INTO CUSTOMER VALUES(5,'daniel','garcia','daniel@entrecine','1234','daniel','daniel')
+INSERT INTO ROOM VALUES(0,'room1',30)
+INSERT INTO ROOM VALUES(1,'room2',30)
+INSERT INTO ROOM VALUES(2,'room3',40)
+INSERT INTO ROOM VALUES(3,'room4',40)
+INSERT INTO ROOM VALUES(4,'room5',50)
+INSERT INTO SESSIONTYPE VALUES(0,'ma\u00f1ana',12,12.0E0)
+INSERT INTO SESSIONTYPE VALUES(1,'media-tarde',17,15.0E0)
+INSERT INTO SESSIONTYPE VALUES(2,'tarde',20,16.0E0)
+INSERT INTO SESSIONTYPE VALUES(3,'tarde-noche',22,15.0E0)
+DROP TABLE PLACE
+\u000aDROP TABLE SESSION
+\u000aDROP TABLE SESSIONTYPE
+\u000aDROP TABLE CUSTOMER
 \u000aDROP TABLE MOVIE
 \u000aDROP TABLE ROOM
 \u000aDROP TABLE SYSTEMUSER
 \u000a\u000aCREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
-\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME TIME,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
-DROP TABLE customer\u000a
-DROP TABLE room
-DROP TABLE sessiontype
-\u000aCREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
-\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME TIME,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
-\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aPRIMARY KEY (ID))
-\u000a\u000aCREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aCATEGORY VARCHAR(25),\u000aSYNOPSIS LONGVARCHAR,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME INTEGER,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25) NOT NULL,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
+\u000a\u000aCREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(100),\u000aCATEGORY VARCHAR(100),\u000aSYNOPSIS LONGVARCHAR,\u000aPRIMARY KEY (ID))
 \u000a\u000aCREATE TABLE SESSION\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_ROOM INTEGER,\u000aID_MOVIE INTEGER,\u000aID_SESSIONTYPE INTEGER,\u000aSTARTDATE DATE,\u000aENDDATE DATE,\u000aPRIMARY KEY (ID))
 \u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_ROOM) \u000aREFERENCES ROOM(ID)
 \u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_MOVIE) \u000aREFERENCES MOVIE(ID)
@@ -43,7 +97,103 @@ DROP TABLE sessiontype
 \u000a\u000aALTER TABLE PLACE\u000aADD FOREIGN KEY (ID_SESSION) \u000aREFERENCES SESSION(ID)
 \u000a\u000aALTER TABLE PUBLIC.PLACE\u000aADD FOREIGN KEY (ID_CUSTOMER) \u000aREFERENCES CUSTOMER(ID)
 \u000a\u000aCREATE TABLE SYSTEMUSER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aTYPE VARCHAR(25),\u000aMSALE BOOLEAN,\u000aMSESSION BOOLEAN,\u000aMMOVIES BOOLEAN,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
-INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','')
 INSERT INTO SYSTEMUSER VALUES(0,'admin','admin','admin',TRUE,TRUE,TRUE)
 INSERT INTO SYSTEMUSER VALUES(1,'user','user','user',TRUE,FALSE,FALSE)
+INSERT INTO SYSTEMUSER VALUES(2,'user2','user2','user',TRUE,TRUE,FALSE)
+INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','','','')
+INSERT INTO CUSTOMER VALUES(1,'carlos','duarte','carlos@entrecine','1234','carlos','carlos')
+INSERT INTO CUSTOMER VALUES(2,'maria','gallego','maria@entrecine','1234','maria','maria')
+INSERT INTO CUSTOMER VALUES(3,'diego','barrantes','diego@entrecine','1234','diego','diego')
+INSERT INTO CUSTOMER VALUES(4,'benjamin','antomil','benjamil@entrecine','1234','benjamil','benjamil')
+INSERT INTO CUSTOMER VALUES(5,'daniel','garcia','daniel@entrecine','1234','daniel','daniel')
+INSERT INTO ROOM VALUES(0,'room1',30)
+INSERT INTO ROOM VALUES(1,'room2',30)
+INSERT INTO ROOM VALUES(2,'room3',40)
+INSERT INTO ROOM VALUES(3,'room4',40)
+INSERT INTO ROOM VALUES(4,'room5',50)
+INSERT INTO SESSIONTYPE VALUES(0,'ma\u00f1ana',12,12.0E0)
+INSERT INTO SESSIONTYPE VALUES(1,'media-tarde',17,15.0E0)
+INSERT INTO SESSIONTYPE VALUES(2,'tarde',20,16.0E0)
+INSERT INTO SESSIONTYPE VALUES(3,'tarde-noche',22,15.0E0)
+INSERT INTO MOVIE VALUES(0,'la caza','drama','Tras un divorcio dif\u00edcil, Lucas, de cuarenta a\u00f1os, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relaci\u00f3n con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita. La nieve comienza a caer, las luces navide\u00f1as se encienden y la mentira se propaga como un virus. ......')
+INSERT INTO MOVIE VALUES(1,'on the road','drama','Nada m\u00e1s morir su padre, Sal Paradise (Sam Riley), un neoyorkino aspirante a escritor, conoce a Dean Moriarty (Garrett Hedlund), un ex-convicto de un encanto arrollador y casado con la s\u00faper liberada y seductora Marylou (Kristen Stewart). Sal y Dean se hacen amigos al instante. .......')
+INSERT INTO MOVIE VALUES(2,'un lugar donde refugiarse','drama','Katie Feldman (Julianne Hough) llega a una peque\u00f1a localidad costera llamada Southport, en Carolina del Norte, con la intenci\u00f3n de rehacer su vida de una manera tranquila. Alquila una vieja caba\u00f1a y consigue un trabajo como camarera en el caf\u00e9 local y cuenta con la esperanza de pasar desapercibida. .......')
+INSERT INTO MOVIE VALUES(3,'memorias de un zombie adolecente','comedia','R (Nicholas Hoult) es un zombie que vaga perdido, solo y sin rumbo tras una plaga mundial que ha convertido a casi toda la poblaci\u00f3n en muertos vivientes. En una excursi\u00f3n a la ciudad junto con su amigo M (Rob Corddry) para buscar algo fresco que llevarse a la boca, R conoce casualmente a Julie (Teresa Palmer), una joven humana a la que salva de convertirse en el men\u00fa del d\u00eda sin saber muy bien por qu\u00e9. .....')
+DELETE FROM MOVIE WHERE ID=0
+DELETE FROM MOVIE WHERE ID=1
+DELETE FROM MOVIE WHERE ID=2
+DELETE FROM MOVIE WHERE ID=3
+INSERT INTO MOVIE VALUES(4,'la caza','drama','Tras un divorcio dif\u00edcil, Lucas, de cuarenta a\u00f1os, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relaci\u00f3n con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita. La nieve comienza a caer, las luces navide\u00f1as se encienden y la mentira se propaga como un virus. ......')
+INSERT INTO MOVIE VALUES(5,'on the road','drama','Nada m\u00e1s morir su padre, Sal Paradise (Sam Riley), un neoyorkino aspirante a escritor, conoce a Dean Moriarty (Garrett Hedlund), un ex-convicto de un encanto arrollador y casado con la s\u00faper liberada y seductora Marylou (Kristen Stewart). Sal y Dean se hacen amigos al instante. .......')
+INSERT INTO MOVIE VALUES(6,'un lugar donde refugiarse','drama','Katie Feldman (Julianne Hough) llega a una peque\u00f1a localidad costera llamada Southport, en Carolina del Norte, con la intenci\u00f3n de rehacer su vida de una manera tranquila. Alquila una vieja caba\u00f1a y consigue un trabajo como camarera en el caf\u00e9 local y cuenta con la esperanza de pasar desapercibida. .......')
+INSERT INTO MOVIE VALUES(7,'memorias de un zombie adolecente','comedia','R (Nicholas Hoult) es un zombie que vaga perdido, solo y sin rumbo tras una plaga mundial que ha convertido a casi toda la poblaci\u00f3n en muertos vivientes. En una excursi\u00f3n a la ciudad junto con su amigo M (Rob Corddry) para buscar algo fresco que llevarse a la boca, R conoce casualmente a Julie (Teresa Palmer), una joven humana a la que salva de convertirse en el men\u00fa del d\u00eda sin saber muy bien por qu\u00e9. .....')
+INSERT INTO MOVIE VALUES(8,'oblivion','ciencia ficcion','Tom Cruise protagoniza OBLIVION, un acontecimiento cinematogr\u00e1fico tan original como innovador del director de TRON:Legacy y del productor de El planeta de los simios. En un futuro planeta Tierra espectacular que ha evolucionado hasta ser irreconocible, un hombre se enfrenta al pasado y toma el camino de la redenci\u00f3n mientras lucha para salvar a la raza humana. ......')
+INSERT INTO MOVIE VALUES(9,'tipos legales','comedia','VAL (Al Pacino) sale de la c\u00e1rcel tras cumplir 28 a\u00f1os de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex g\u00e1nsteres deciden empezar a recuperar esa misma noche los d\u00edas de gloria y las d\u00e9cadas de crimen, drogas y sexo perdidas. ......')
+INSERT INTO MOVIE VALUES(10,'posesion infernal','terror','Cinco veintea\u00f1eros se refugian en una remota caba\u00f1a donde descubren \u201cEl Libro de los Muertos\u201d y sin ser conscientes de ello despiertan a los demonios que habitan en los bosques cercanos. Sucesivamente todos los j\u00f3venes son pose\u00eddos menos uno, quien tiene que enfrentarse al mal y luchar por su vida.')
+INSERT INTO MOVIE VALUES(11,'efectos secundarios','suspense','The Side Effects estar\u00e1 ambientada en el mundo de la psicofarmacolog\u00eda (el estudio de c\u00f3mo las drogas afectan la mente humana). Zeta-Jones dar\u00e1 vida a una m\u00e9dico que se convierte en una adicta a las drogas con receta y comienza un romance con el personaje de Jude Law. Channing Tatum por su parte interpretar\u00e1 al marido del personaje de Rooney Mara, un preso que en breve ser\u00e1 libre.')
+INSERT INTO MOVIE VALUES(12,'tesis sobre un homicidio','suspense','Roberto Berm\u00fadez tiene 55 a\u00f1os, es abogado de larga y reconocida trayectoria aunque ahora, alejado ya de la actividad legal, dedica sus d\u00edas a la docencia. Su vida personal es m\u00e1s bien ca\u00f3tica. Separado de su mujer desde hace varios a\u00f1os no ha logrado una relaci\u00f3n amorosa estable desde entonces y para evacuar sus urgencias sexuales se permite, no sin algo culpa, enredarse con alguna de sus ex-alumnas. Su escepticismo y su soberbia han ido creciendo a la par de su afici\u00f3n por el whisky. Una vez m\u00e1s, como todos los a\u00f1os, se prepara para comenzar su prestigioso y afamado Seminario sobre Derecho penal. ....')
+INSERT INTO MOVIE VALUES(13,'un amor entre dos mundos','ciencia ficcion','Adam es un tipo aparentemente normal en un universo extraordinario. Vive humildemente, tratando de ganarse la vida, pero su esp\u00edritu rom\u00e1ntico se aferra a la memoria de una mujer de otro mundo que am\u00f3 en otro tiempo, una chica de un mundo con su propia gravedad, directamente encima, pero fuera de su alcance...una chica llamada Eden. Su coqueteo de la infancia se convierte en un amor imposible. Pero cuando ve a Eden ya adulta en la televisi\u00f3n despu\u00e9s de muchos a\u00f1os sin saber de ella, nada se interpondr\u00e1 en su camino para conseguirla... Ni siquiera la ley o la ciencia.')
+INSERT INTO MOVIE VALUES(14,'the host','ciencia ficcion','Nuestro mundo ha sido invadido por un enemigo desconocido. Los seres humanos se han convertido en hu\u00e9spedes de los invasores, que se han apoderado de sus mentes manteniendo el cuerpo intacto. Casi toda la humanidad ha sucumbido a esta invasi\u00f3n. .......')
+INSERT INTO MOVIE VALUES(15,'G.I.Joe la venganza','accion','En esta ocasi\u00f3n los G.I. Joes no tendr\u00e1n que luchar \u00fanicamente contra su mortal enemigo, Cobra, sino que adem\u00e1s tendr\u00e1n que v\u00e9rselas con amenazas dentro del propio gobierno que pondr\u00e1n en peligro su existencia.')
+INSERT INTO MOVIE VALUES(16,'la cocinera del presidente','comedia','Hortense Laborie, una conocida chef del P\u00e9rigord, no acaba de creerse que el presidente de la Rep\u00fablica la haya nombrado su chef particular, y que deber\u00e1 encargarse de todas sus comidas privadas en el Palacio del El\u00edseo.n A pesar de los celos y envidias de numerosos miembros del personal de cocina, Hortense no tarda en hacerse respetar gracias a su genio. La autenticidad de sus platos seduce al presidente, pero los pasillos del poder est\u00e1n trufados de trampas. Basada en la extraordinaria historia verdadera de la cocinera privada de Fran\u00e7ois Mitterand.')
+INSERT INTO MOVIE VALUES(17,'los croods una aventura prehistorica','animacion','Sigue los pasos de la primera familia moderna del mundo durante el viaje de su vida. Cuando la caverna que siempre ha sido su hogar es destruida \u2013al igual que el resto de su mundo poco despu\u00e9s\u2013 los Croods se ven obligados a emprender el primer viaje familiar por carretera (o m\u00e1s bien sendero). Sacudidos por choques generacionales y por movimientos s\u00edsmicos, los Croods descubren un incre\u00edble nuevo mundo, lleno de fant\u00e1sticas criaturas, y un futuro que supera cuanto hab\u00edan imaginado.')
+DROP TABLE PLACE
+\u000aDROP TABLE SESSION
+\u000aDROP TABLE SESSIONTYPE
+\u000aDROP TABLE CUSTOMER
+\u000aDROP TABLE MOVIE
+\u000aDROP TABLE ROOM
+\u000aDROP TABLE SYSTEMUSER
+\u000a\u000aCREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME INTEGER,\u000aCOST DOUBLE,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(25),\u000aCREDITCARD VARCHAR(25),\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25) NOT NULL,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
+\u000a\u000aCREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(100),\u000aCATEGORY VARCHAR(100),\u000aSYNOPSIS LONGVARCHAR,\u000aPRIMARY KEY (ID))
+\u000a\u000aCREATE TABLE SESSION\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_ROOM INTEGER,\u000aID_MOVIE INTEGER,\u000aID_SESSIONTYPE INTEGER,\u000aSTARTDATE DATE,\u000aENDDATE DATE,\u000aPRIMARY KEY (ID))
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_ROOM) \u000aREFERENCES ROOM(ID)
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_MOVIE) \u000aREFERENCES MOVIE(ID)
+\u000a\u000aALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_SESSIONTYPE) \u000aREFERENCES SESSIONTYPE(ID)
+\u000a\u000aCREATE TABLE PLACE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_SESSION INTEGER,\u000aROWSEAT INTEGER,\u000aSEAT INTEGER,\u000aID_CUSTOMER INTEGER,\u000aCREDITCARD VARCHAR(25),\u000aAMOUNT DOUBLE,\u000aPAYMENTDATE DATE,\u000aPRIMARY KEY (ID))
+\u000a\u000aALTER TABLE PLACE\u000aADD FOREIGN KEY (ID_SESSION) \u000aREFERENCES SESSION(ID)
+\u000a\u000aALTER TABLE PUBLIC.PLACE\u000aADD FOREIGN KEY (ID_CUSTOMER) \u000aREFERENCES CUSTOMER(ID)
+\u000a\u000aCREATE TABLE SYSTEMUSER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aTYPE VARCHAR(25),\u000aMSALE BOOLEAN,\u000aMSESSION BOOLEAN,\u000aMMOVIES BOOLEAN,\u000aPRIMARY KEY (ID),\u000aUNIQUE (LOGIN))
+INSERT INTO SYSTEMUSER VALUES(0,'admin','admin','admin',TRUE,TRUE,TRUE)
+INSERT INTO SYSTEMUSER VALUES(1,'user','user','user',TRUE,FALSE,FALSE)
+INSERT INTO SYSTEMUSER VALUES(2,'user2','user2','user',TRUE,TRUE,FALSE)
+INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','','','')
+INSERT INTO CUSTOMER VALUES(1,'carlos','duarte','carlos@entrecine','1234','carlos','carlos')
+INSERT INTO CUSTOMER VALUES(2,'maria','gallego','maria@entrecine','1234','maria','maria')
+INSERT INTO CUSTOMER VALUES(3,'diego','barrantes','diego@entrecine','1234','diego','diego')
+INSERT INTO CUSTOMER VALUES(4,'benjamin','antomil','benjamil@entrecine','1234','benjamil','benjamil')
+INSERT INTO CUSTOMER VALUES(5,'daniel','garcia','daniel@entrecine','1234','daniel','daniel')
+INSERT INTO ROOM VALUES(0,'room1',30)
+INSERT INTO ROOM VALUES(1,'room2',30)
+INSERT INTO ROOM VALUES(2,'room3',40)
+INSERT INTO ROOM VALUES(3,'room4',40)
+INSERT INTO ROOM VALUES(4,'room5',50)
+INSERT INTO SESSIONTYPE VALUES(0,'ma\u00f1ana',12,12.0E0)
+INSERT INTO SESSIONTYPE VALUES(1,'media-tarde',17,15.0E0)
+INSERT INTO SESSIONTYPE VALUES(2,'tarde',20,16.0E0)
+INSERT INTO SESSIONTYPE VALUES(3,'tarde-noche',22,15.0E0)
+INSERT INTO MOVIE VALUES(0,'la caza','drama','Tras un divorcio dif\u00edcil, Lucas, de cuarenta a\u00f1os, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relaci\u00f3n con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita. La nieve comienza a caer, las luces navide\u00f1as se encienden y la mentira se propaga como un virus. ......')
+INSERT INTO MOVIE VALUES(1,'on the road','drama','Nada m\u00e1s morir su padre, Sal Paradise (Sam Riley), un neoyorkino aspirante a escritor, conoce a Dean Moriarty (Garrett Hedlund), un ex-convicto de un encanto arrollador y casado con la s\u00faper liberada y seductora Marylou (Kristen Stewart). Sal y Dean se hacen amigos al instante. .......')
+INSERT INTO MOVIE VALUES(2,'un lugar donde refugiarse','drama','Katie Feldman (Julianne Hough) llega a una peque\u00f1a localidad costera llamada Southport, en Carolina del Norte, con la intenci\u00f3n de rehacer su vida de una manera tranquila. Alquila una vieja caba\u00f1a y consigue un trabajo como camarera en el caf\u00e9 local y cuenta con la esperanza de pasar desapercibida. .......')
+INSERT INTO MOVIE VALUES(3,'memorias de un zombie adolecente','comedia','R (Nicholas Hoult) es un zombie que vaga perdido, solo y sin rumbo tras una plaga mundial que ha convertido a casi toda la poblaci\u00f3n en muertos vivientes. En una excursi\u00f3n a la ciudad junto con su amigo M (Rob Corddry) para buscar algo fresco que llevarse a la boca, R conoce casualmente a Julie (Teresa Palmer), una joven humana a la que salva de convertirse en el men\u00fa del d\u00eda sin saber muy bien por qu\u00e9. .....')
+INSERT INTO MOVIE VALUES(4,'oblivion','ciencia ficcion','Tom Cruise protagoniza OBLIVION, un acontecimiento cinematogr\u00e1fico tan original como innovador del director de TRON:Legacy y del productor de El planeta de los simios. En un futuro planeta Tierra espectacular que ha evolucionado hasta ser irreconocible, un hombre se enfrenta al pasado y toma el camino de la redenci\u00f3n mientras lucha para salvar a la raza humana. ......')
+INSERT INTO MOVIE VALUES(5,'tipos legales','comedia','VAL (Al Pacino) sale de la c\u00e1rcel tras cumplir 28 a\u00f1os de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex g\u00e1nsteres deciden empezar a recuperar esa misma noche los d\u00edas de gloria y las d\u00e9cadas de crimen, drogas y sexo perdidas. ......')
+INSERT INTO MOVIE VALUES(6,'posesion infernal','terror','Cinco veintea\u00f1eros se refugian en una remota caba\u00f1a donde descubren \u201cEl Libro de los Muertos\u201d y sin ser conscientes de ello despiertan a los demonios que habitan en los bosques cercanos. Sucesivamente todos los j\u00f3venes son pose\u00eddos menos uno, quien tiene que enfrentarse al mal y luchar por su vida.')
+INSERT INTO MOVIE VALUES(7,'efectos secundarios','suspense','The Side Effects estar\u00e1 ambientada en el mundo de la psicofarmacolog\u00eda (el estudio de c\u00f3mo las drogas afectan la mente humana). Zeta-Jones dar\u00e1 vida a una m\u00e9dico que se convierte en una adicta a las drogas con receta y comienza un romance con el personaje de Jude Law. Channing Tatum por su parte interpretar\u00e1 al marido del personaje de Rooney Mara, un preso que en breve ser\u00e1 libre.')
+INSERT INTO MOVIE VALUES(8,'tesis sobre un homicidio','suspense','Roberto Berm\u00fadez tiene 55 a\u00f1os, es abogado de larga y reconocida trayectoria aunque ahora, alejado ya de la actividad legal, dedica sus d\u00edas a la docencia. Su vida personal es m\u00e1s bien ca\u00f3tica. Separado de su mujer desde hace varios a\u00f1os no ha logrado una relaci\u00f3n amorosa estable desde entonces y para evacuar sus urgencias sexuales se permite, no sin algo culpa, enredarse con alguna de sus ex-alumnas. Su escepticismo y su soberbia han ido creciendo a la par de su afici\u00f3n por el whisky. Una vez m\u00e1s, como todos los a\u00f1os, se prepara para comenzar su prestigioso y afamado Seminario sobre Derecho penal. ....')
+INSERT INTO MOVIE VALUES(9,'un amor entre dos mundos','ciencia ficcion','Adam es un tipo aparentemente normal en un universo extraordinario. Vive humildemente, tratando de ganarse la vida, pero su esp\u00edritu rom\u00e1ntico se aferra a la memoria de una mujer de otro mundo que am\u00f3 en otro tiempo, una chica de un mundo con su propia gravedad, directamente encima, pero fuera de su alcance...una chica llamada Eden. Su coqueteo de la infancia se convierte en un amor imposible. Pero cuando ve a Eden ya adulta en la televisi\u00f3n despu\u00e9s de muchos a\u00f1os sin saber de ella, nada se interpondr\u00e1 en su camino para conseguirla... Ni siquiera la ley o la ciencia.')
+INSERT INTO MOVIE VALUES(10,'the host','ciencia ficcion','Nuestro mundo ha sido invadido por un enemigo desconocido. Los seres humanos se han convertido en hu\u00e9spedes de los invasores, que se han apoderado de sus mentes manteniendo el cuerpo intacto. Casi toda la humanidad ha sucumbido a esta invasi\u00f3n. .......')
+INSERT INTO MOVIE VALUES(11,'G.I.Joe la venganza','accion','En esta ocasi\u00f3n los G.I. Joes no tendr\u00e1n que luchar \u00fanicamente contra su mortal enemigo, Cobra, sino que adem\u00e1s tendr\u00e1n que v\u00e9rselas con amenazas dentro del propio gobierno que pondr\u00e1n en peligro su existencia.')
+INSERT INTO MOVIE VALUES(12,'la cocinera del presidente','comedia','Hortense Laborie, una conocida chef del P\u00e9rigord, no acaba de creerse que el presidente de la Rep\u00fablica la haya nombrado su chef particular, y que deber\u00e1 encargarse de todas sus comidas privadas en el Palacio del El\u00edseo.n A pesar de los celos y envidias de numerosos miembros del personal de cocina, Hortense no tarda en hacerse respetar gracias a su genio. La autenticidad de sus platos seduce al presidente, pero los pasillos del poder est\u00e1n trufados de trampas. Basada en la extraordinaria historia verdadera de la cocinera privada de Fran\u00e7ois Mitterand.')
+INSERT INTO MOVIE VALUES(13,'los croods una aventura prehistorica','animacion','Sigue los pasos de la primera familia moderna del mundo durante el viaje de su vida. Cuando la caverna que siempre ha sido su hogar es destruida \u2013al igual que el resto de su mundo poco despu\u00e9s\u2013 los Croods se ven obligados a emprender el primer viaje familiar por carretera (o m\u00e1s bien sendero). Sacudidos por choques generacionales y por movimientos s\u00edsmicos, los Croods descubren un incre\u00edble nuevo mundo, lleno de fant\u00e1sticas criaturas, y un futuro que supera cuanto hab\u00edan imaginado.')
+INSERT INTO SESSION VALUES(0,0,0,0,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(1,1,1,0,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(2,0,2,1,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(3,1,3,1,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(4,0,4,2,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(5,1,5,2,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(6,0,6,3,'2013-01-01','2014-01-01')
+INSERT INTO SESSION VALUES(7,1,7,3,'2013-01-01','2014-01-01')
 DISCONNECT

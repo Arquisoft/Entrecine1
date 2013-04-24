@@ -1,0 +1,69 @@
+package models;
+
+import java.util.Calendar;
+
+public class Place {
+
+	private int id, id_session, id_customer, rowSeat, seat;
+	private String creditCard;
+	private double amount;
+	private Calendar paymentDate;
+	public Place(int id, int id_session, int id_customer, int rowSeat,
+			int seat, String creditCard, double amount, Calendar paymentDate) {
+		super();
+		this.id = id;
+		this.id_session = id_session;
+		this.id_customer = id_customer;
+		this.rowSeat = rowSeat;
+		this.seat = seat;
+		this.creditCard = creditCard;
+		this.amount = amount;
+		this.paymentDate = paymentDate;
+	}
+	public int getId_session() {
+		return id_session;
+	}
+	public void setId_session(int id_session) {
+		this.id_session = id_session;
+	}
+	public int getId_customer() {
+		return id_customer;
+	}
+	public void setId_customer(int id_customer) {
+		this.id_customer = id_customer;
+	}
+	public int getRowSeat() {
+		return rowSeat;
+	}
+	public void setRowSeat(int rowSeat) {
+		this.rowSeat = rowSeat;
+	}
+	public int getSeat() {
+		return seat;
+	}
+	public void setSeat(int seat) {
+		this.seat = seat;
+	}
+	public String getCreditCard() {
+		return creditCard;
+	}
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+	public double getAmount() {
+		return amount;
+	}
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	public Calendar getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(Calendar paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+	public int getId() {
+		return id;
+	}
+	
+}
