@@ -6,7 +6,7 @@ public class Session {
 
 	private int id, id_room, id_movie, id_sessionType;
 	private Calendar startDate, endDate;
-	
+
 	public Session(int id, int id_room, int id_movie, int id_sessionType,
 			Calendar startDate, Calendar endDate) {
 		super();
@@ -61,6 +61,5 @@ public class Session {
 	public int getId() {
 		return id;
 	}
-	
-	
+
 }

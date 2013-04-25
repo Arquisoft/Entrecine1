@@ -5,7 +5,7 @@ public class SessionType {
 	private int id, startTime;
 	private String name;
 	private double cost;
-	
+
 	public SessionType(int id, int startTime, String name, double cost) {
 		super();
 		this.id = id;
@@ -41,6 +41,5 @@ public class SessionType {
 	public int getId() {
 		return id;
 	}
-	
-	
+
 }

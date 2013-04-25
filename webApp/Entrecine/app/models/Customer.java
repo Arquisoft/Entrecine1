@@ -4,7 +4,7 @@ public class Customer {
 
 	private int id;
 	private String name, surnames, email, creditCard, login, passw;
-	
+
 	public Customer(int id, String name, String surnames, String email,
 			String creditcard, String login, String passw) {
 		super();
