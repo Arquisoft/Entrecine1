@@ -22,6 +22,7 @@ public class GraphDBHandler {
 
 	private GraphDatabaseService graphDb;
 	private ExecutionEngine exEngine;
+	
 
 	private final String USER_LOGIN = "Login";
 	private final String MOVIE_INDEX = "Rel_id";
@@ -52,9 +53,7 @@ public class GraphDBHandler {
 	//For testing purpose
 	public static GraphDBHandler getConnection( GraphDatabaseService testDb) {
 		// TODO Auto-generated method stub
-		if (graphHandler == null) {
-			graphHandler = new GraphDBHandler(testDb);
-		}
+		graphHandler = new GraphDBHandler(testDb);
 		return graphHandler;
 	}
 
@@ -83,6 +82,7 @@ public class GraphDBHandler {
 		List<Movie> pelis=new ArrayList<Movie>();
 		try {
 			userNode = findUserNode(user);
+			tx.success();
 		} finally {
 			tx.finish();
 		}
@@ -96,7 +96,7 @@ public class GraphDBHandler {
 	        {
 	            // note: we're grabbing the name property from the node,
 	            // not from the n.name in this case.
-	        	int id=Integer.parseInt((String) node.getProperty(MOVIE_INDEX));
+	        	int id=(Integer)node.getProperty(MOVIE_INDEX);
 	        	String titulo=(String) node.getProperty(MOVIE_TITLE);
 	        	Movie peli= new Movie(id, titulo, null, null);
 	            pelis.add(peli);

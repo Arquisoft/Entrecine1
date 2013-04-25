@@ -1,5 +1,9 @@
 package es.uniovi.asw.entrecine;
 
+import static org.fest.assertions.Assertions.assertThat;
+
+import java.util.List;
+
 import models.Customer;
 import models.Movie;
 
@@ -13,8 +17,6 @@ import org.neo4j.graphdb.index.Index;
 import org.neo4j.test.TestGraphDatabaseFactory;
 
 import es.uniovi.asw.entrecine.database.GraphDBHandler;
-
-import static org.fest.assertions.Assertions.*;
 
 public class GraphDatabaseTest {
 
@@ -73,8 +75,18 @@ public class GraphDatabaseTest {
 			assertThat(rel.getOtherNode(userNode).equals(movieNode));
 		}
 		
-		
-
+	}
+	
+	@Test
+	public void checkRecommendations(){
+		List<Movie> lista = GraphDBHandler.getConnection().getRecommendations(user1);
+		assertThat(lista.get(0).equals(mov3));
+	}
+	
+	@Test
+	public void checkNoRecommendations(){
+		List<Movie> lista = GraphDBHandler.getConnection().getRecommendations(user2);
+		assertThat(lista.isEmpty());
 	}
 
 }
