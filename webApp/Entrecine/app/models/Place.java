@@ -1,21 +1,19 @@
 package models;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 public class Place {
 
-	private int id, id_session, id_customer, rowSeat, seat;
+	private int id, id_session, id_customer, seat;
 	private String creditCard;
 	private double amount;
-	private Calendar paymentDate;
+	private Date paymentDate;
 
-	public Place(int id, int id_session, int id_customer, int rowSeat,
-			int seat, String creditCard, double amount, Calendar paymentDate) {
+	public Place( int id_session, int id_customer, int rowSeat,
+			int seat, String creditCard, double amount, Date paymentDate) {
 		super();
-		this.id = id;
 		this.id_session = id_session;
 		this.id_customer = id_customer;
-		this.rowSeat = rowSeat;
 		this.seat = seat;
 		this.creditCard = creditCard;
 		this.amount = amount;
@@ -36,14 +34,6 @@ public class Place {
 
 	public void setId_customer(int id_customer) {
 		this.id_customer = id_customer;
-	}
-
-	public int getRowSeat() {
-		return rowSeat;
-	}
-
-	public void setRowSeat(int rowSeat) {
-		this.rowSeat = rowSeat;
 	}
 
 	public int getSeat() {
@@ -70,11 +60,11 @@ public class Place {
 		this.amount = amount;
 	}
 
-	public Calendar getPaymentDate() {
+	public Date getPaymentDate() {
 		return paymentDate;
 	}
 
-	public void setPaymentDate(Calendar paymentDate) {
+	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
 	}
 
@@ -82,4 +72,7 @@ public class Place {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 }

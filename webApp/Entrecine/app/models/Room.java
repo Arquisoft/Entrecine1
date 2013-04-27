@@ -5,9 +5,8 @@ public class Room {
 	private int id, seatingCapacity;
 	private String access;
 
-	public Room(int id, int seatingCapacity, String access) {
+	public Room(int seatingCapacity, String access) {
 		super();
-		this.id = id;
 		this.seatingCapacity = seatingCapacity;
 		this.access = access;
 	}
@@ -31,5 +30,7 @@ public class Room {
 	public int getId() {
 		return id;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
 }

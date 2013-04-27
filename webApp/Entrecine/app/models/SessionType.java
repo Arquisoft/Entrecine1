@@ -6,9 +6,8 @@ public class SessionType {
 	private String name;
 	private double cost;
 
-	public SessionType(int id, int startTime, String name, double cost) {
+	public SessionType(int startTime, String name, double cost) {
 		super();
-		this.id = id;
 		this.startTime = startTime;
 		this.name = name;
 		this.cost = cost;
@@ -41,5 +40,7 @@ public class SessionType {
 	public int getId() {
 		return id;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
 }

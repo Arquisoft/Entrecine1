@@ -1,0 +1,217 @@
+DROP TABLE PLACE
+DROP TABLE SESSION
+DROP TABLE SESSIONTYPE
+DROP TABLE CUSTOMER
+DROP TABLE MOVIE
+DROP TABLE ROOM
+DROP TABLE SYSTEMUSER
+
+CREATE TABLE ROOM
+(ID INTEGER NOT NULL IDENTITY,
+ACCESS VARCHAR(25),
+SEATINGCAPACITY INTEGER
+)
+
+CREATE TABLE SESSIONTYPE
+(ID INTEGER NOT NULL IDENTITY,
+NAME VARCHAR(25),
+STARTTIME INTEGER,
+COST DOUBLE
+)
+
+CREATE TABLE CUSTOMER
+(ID INTEGER NOT NULL IDENTITY,
+NAME VARCHAR(25),
+SURNAMES VARCHAR(25),
+EMAIL VARCHAR(100),
+CREDITCARD VARCHAR(25),
+LOGIN VARCHAR(25) NOT NULL,
+PASSW VARCHAR(25),
+UNIQUE (LOGIN))
+
+CREATE TABLE MOVIE
+(ID INTEGER NOT NULL IDENTITY,
+NAME VARCHAR(100),
+CATEGORY VARCHAR(100),
+SYNOPSIS LONGVARCHAR
+)
+
+CREATE TABLE SESSION
+(ID INTEGER NOT NULL IDENTITY,
+ID_ROOM INTEGER,
+ID_MOVIE INTEGER,
+ID_SESSIONTYPE INTEGER,
+STARTDATE DATE,
+ENDDATE DATE
+)
+
+ALTER TABLE SESSION
+ADD FOREIGN KEY (ID_ROOM) 
+REFERENCES ROOM(ID)
+
+ALTER TABLE SESSION
+ADD FOREIGN KEY (ID_MOVIE) 
+REFERENCES MOVIE(ID)
+
+ALTER TABLE SESSION
+ADD FOREIGN KEY (ID_SESSIONTYPE) 
+REFERENCES SESSIONTYPE(ID)
+
+CREATE TABLE PLACE
+(ID INTEGER NOT NULL IDENTITY,
+ID_SESSION INTEGER,
+SEAT INTEGER,
+ID_CUSTOMER INTEGER,
+CREDITCARD VARCHAR(25),
+AMOUNT DOUBLE,
+PAYMENTDATE DATE
+)
+
+ALTER TABLE PLACE
+ADD FOREIGN KEY (ID_SESSION) 
+REFERENCES SESSION(ID)
+
+ALTER TABLE PUBLIC.PLACE
+ADD FOREIGN KEY (ID_CUSTOMER) 
+REFERENCES CUSTOMER(ID)
+
+CREATE TABLE SYSTEMUSER
+(ID INTEGER NOT NULL IDENTITY,
+LOGIN VARCHAR(25) NOT NULL,
+PASSW VARCHAR(25),
+TYPE VARCHAR(25),
+MSALE BOOLEAN,
+MSESSION BOOLEAN,
+MMOVIES BOOLEAN,
+UNIQUE (LOGIN))
+
+insert into systemuser (login,passw,type,msale,msession,mmovies)
+  values('admin','admin','admin',true,true,true);
+insert into systemuser (login,passw,type,msale,msession,mmovies)
+  values('user','user','user',true,false,false);
+insert into systemuser (login,passw,type,msale,msession,mmovies)
+  values('user2','user2','user',true,true,false);
+
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('TVP','TVP','TVP@ENTRECINE','','','');
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('carlos','duarte','carlos@ENTRECINE','123456','carlos','carlos');
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('diego','barrantes','diego@ENTRECINE','123456','diego','diego');
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('maria','gallego','maria@ENTRECINE','123456','maria','maria');
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('benjamin','antomil','benjamin@ENTRECINE','123456','benjamin','benjamin');
+insert into customer (name,surnames,email,creditcard,login,passw)
+  values ('daniel','gracia','@ENTRECINE','123456','daniel','daniel');
+
+insert into room (access, seatingcapacity)
+  values ('room1',50)
+insert into room (access, seatingcapacity)
+  values ('room2',40)
+insert into room (access, seatingcapacity)
+  values ('room3',40)
+insert into room (access, seatingcapacity)
+  values ('room4',30)
+insert into room (access, seatingcapacity)
+  values ('room5',30)
+
+insert into sessiontype (name, starttime, cost)
+  values ('mañana',12,'12.0')
+insert into sessiontype (name, starttime, cost)
+  values ('media-tarde',16,'15.0')
+insert into sessiontype (name, starttime, cost)
+  values ('tarde',19,'16.0')
+insert into sessiontype (name, starttime, cost)
+  values ('tarde-noche',22,'15.0')
+
+
+insert into movie (name, category, synopsis)
+  values ('un gran equipo','comedia','Patrick Orbéra (José García), es una vieja gloria del fútbol que no ha logrado reconvertirse. Sin trabajo y arruinado, ha perdido incluso el derecho a ver a su hija Laura. Apremiado por un juez para que consiga un empleo estable, no le queda otra elección más que irse a una pequeña isla bretona para entrenar al equipo de fútbol local.')
+insert into movie (name, category, synopsis)
+  values ('noche de vino y copas','comedia','Christian viaja con Óscar, su extravagante y exagerado hijo adolescente, a Buenos Aires. Va en busca de su esposa, la cual los abandonó un año antes por un famoso y atractivo jugador de futbol argentino.')
+insert into movie (name, category, synopsis)
+  values ('iron man 3','ciencia ficcion','En Iron Man 3 de Marvel, el descarado pero brillante empresario Tony Stark/Iron Man se enfrentará a un enemigo cuyo poder no conoce límites. Cuando Stark comprende que su enemigo ha destruido su universo personal, se embarca en una angustiosa búsqueda para encontrar a los responsables. ')
+insert into movie (name, category, synopsis)
+  values ('la caza','drama','Tras un divorcio difícil, Lucas, de cuarenta años, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relación con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita.')
+insert into movie (name, category, synopsis)
+  values ('on the road','drama','Nada más morir su padre, Sal Paradise (Sam Riley), un neoyorkino aspirante a escritor, conoce a Dean Moriarty (Garrett Hedlund), un ex-convicto de un encanto arrollador y casado con la súper liberada y seductora Marylou (Kristen Stewart).')
+insert into movie (name, category, synopsis)
+  values ('un lugar donde refugiarse','drama','Katie Feldman (Julianne Hough) llega a una pequeña localidad costera llamada Southport, en Carolina del Norte, con la intención de rehacer su vida de una manera tranquila. Alquila una vieja cabaña y consigue un trabajo como camarera en el café local y cuenta con la esperanza de pasar desapercibida. Pero a pesar del casi impenetrable muro emocional que ha creado para protegerse, se siente atraída por el cariño y la consideración genuinos de esta pequeña y unida comunidad, especialmente del dueño del supermercado, Alex (Josh Duhamel), y sus dos hijos pequeños.')
+insert into movie (name, category, synopsis)
+  values ('memorias de un zombie adolescente','comedia','R (Nicholas Hoult) es un zombie que vaga perdido, solo y sin rumbo tras una plaga mundial que ha convertido a casi toda la población en muertos vivientes. En una excursión a la ciudad junto con su amigo M (Rob Corddry) para buscar algo fresco que llevarse a la boca, R conoce casualmente a Julie (Teresa Palmer), una joven humana a la que salva de convertirse en el menú del día sin saber muy bien por qué. Poco a poco, y gracias a Julie, el corazón muerto de R comienza a latir de nuevo y vuelve a recordar cómo era estar vivo.')
+insert into movie (name, category, synopsis)
+  values ('tierra prometida','drama','Steve Butler (Matt Damon) un ejecutivo de una gran empresa, llega a un pequeño pueblo con su compañera de trabajo, Sue Thomason (Frances McDormand), para comprar los derechos de perforación a los propietarios de las tierras, casi todos ganaderos. En esa población, asolada por la crisis económica de los últimos años, Steve intentará convencer a la gente de los beneficios de perforar en sus tierras, pero también tendrá ocasión de reconsiderar lo que ha sido su vida hasta ese momento.')
+insert into movie (name, category, synopsis)
+  values ('to the wonder','drama','Neil, un aspirante a escritor, y Marina, una joven madre, están juntos en la isla francesa de St Michel, conocida en Francia como la maravilla del mundo occidental, revitalizados por las sensaciones de estar de nuevo enamorados. Neil ha dejado Estados Unidos buscando una vida mejor, dejando atrás una serie de hechos dolorosos. Mirando a Marina a los ojos, Neil está seguro de que ha encontrado a la mujer que puede amar con dedicación.')
+insert into movie (name, category, synopsis)
+  values ('oblivion','ciencia ficcion','Tom Cruise protagoniza OBLIVION, un acontecimiento cinematográfico tan original como innovador del director de TRON: Legacy y del productor de El planeta de los simios. En un futuro planeta Tierra espectacular que ha evolucionado hasta ser irreconocible, un hombre se enfrenta al pasado y toma el camino de la redención mientras lucha para salvar a la raza humana. ')
+insert into movie (name, category, synopsis)
+  values ('LOL','comedia','Remake americano de la película francesa de 2008 del mismo nombre. La cinta cuenta la historia de una chica de 16 años de edad que, abandonada por su novio tras una experiencia sexual, pone su mirada en su mejor amigo. Al mismo tiempo, su madre divorciada de 40 años de edad, lucha por seguir adelante con su vida.')
+insert into movie (name, category, synopsis)
+  values ('tipos legales','comedia','VAL (Al Pacino) sale de la cárcel tras cumplir 28 años de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex gánsteres deciden empezar a recuperar esa misma noche los días de gloria y las décadas de crimen, drogas y sexo perdidas.')
+insert into movie (name, category, synopsis)
+  values ('posesion infernal','terror','Cinco veinteañeros se refugian en una remota cabaña donde descubren El Libro de los Muertos y sin ser conscientes de ello despiertan a los demonios que habitan en los bosques cercanos. Sucesivamente todos los jóvenes son poseídos menos uno, quien tiene que enfrentarse al mal y luchar por su vida.')
+insert into movie (name, category, synopsis)
+  values ('for greater glory: cristiada','drama','Basada en hechos reales. La Guerra Cristera (1926-29) fue una rebelión que estalló debido a la persecución de que era objeto la Iglesia Católica por parte del Gobierno mejicano. Aunque es una película hecha en México, fue rodada en inglés. Está considerada la película más cara de la industria del cine mexicano; su coste fue aproximadamente de 110 millones de pesos.')
+insert into movie (name, category, synopsis)
+  values ('efectos secundarios','suspense','The Side Effects estará ambientada en el mundo de la psicofarmacología (el estudio de cómo las drogas afectan la mente humana). Zeta-Jones dará vida a una médico que se convierte en una adicta a las drogas con receta y comienza un romance con el personaje de Jude Law. Channing Tatum por su parte interpretará al marido del personaje de Rooney Mara, un preso que en breve será libre.')
+insert into movie (name, category, synopsis)
+  values ('tesis sobre un homicidio','suspense','Roberto Bermúdez tiene 55 años, es abogado de larga y reconocida trayectoria aunque ahora, alejado ya de la actividad legal, dedica sus días a la docencia. Su vida personal es más bien caótica. Separado de su mujer desde hace varios años no ha logrado una relación amorosa estable desde entonces y para evacuar sus urgencias sexuales se permite, no sin algo culpa, enredarse con alguna de sus ex-alumnas. Su escepticismo y su soberbia han ido creciendo a la par de su afición por el whisky. ')
+insert into movie (name, category, synopsis)
+  values ('un amor entre dos mundos','ciencia ficcion','Adam es un tipo aparentemente normal en un universo extraordinario. Vive humildemente, tratando de ganarse la vida, pero su espíritu romántico se aferra a la memoria de una mujer de otro mundo que amó en otro tiempo, una chica de un mundo con su propia gravedad, directamente encima, pero fuera de su alcance...una chica llamada Eden. Su coqueteo de la infancia se convierte en un amor imposible. Pero cuando ve a Eden ya adulta en la televisión después de muchos años sin saber de ella, nada se interpondrá en su camino para conseguirla..')
+insert into movie (name, category, synopsis)
+  values ('the host','ciencia ficcion','Nuestro mundo ha sido invadido por un enemigo desconocido. Los seres humanos se han convertido en huéspedes de los invasores, que se han apoderado de sus mentes manteniendo el cuerpo intacto. Casi toda la humanidad ha sucumbido a esta invasión. Cuando Melanie (Saoirse Ronan), uno de los pocos humanos «salvajes» que quedan, se ve capturada, está convencida de que ha llegado su fin. Wanderer, el «alma» invasora asignada al cuerpo de Melanie, ya está avisada de las dificultades que implica vivir dentro de un ser humano: ')
+insert into movie (name, category, synopsis)
+  values ('G.I.Joe: la venganza','accion','En esta ocasión los G.I. Joes no tendrán que luchar únicamente contra su mortal enemigo, Cobra, sino que además tendrán que vérselas con amenazas dentro del propio gobierno que pondrán en peligro su existencia')
+insert into movie (name, category, synopsis)
+  values ('la cocinera del presidente','comedia','Hortense Laborie, una conocida chef del Périgord, no acaba de creerse que el presidente de la República la haya nombrado su chef particular, y que deberá encargarse de todas sus comidas privadas en el Palacio del Elíseo.n A pesar de los celos y envidias de numerosos miembros del personal de cocina, Hortense no tarda en hacerse respetar gracias a su genio. La autenticidad de sus platos seduce al presidente, pero los pasillos del poder están trufados de trampas. Basada en la extraordinaria historia verdadera de la cocinera privada de François Mitterand.')
+
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (0,0,0,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (1,1,0,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (2,2,0,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (3,3,0,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (0,4,1,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (1,5,1,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (2,6,1,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (3,7,1,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (0,8,2,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (1,9,2,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (2,10,2,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (3,11,2,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (0,12,3,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (1,13,3,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (2,14,3,'2013-01-01','2014-01-01')
+insert into session(id_room, id_movie, id_sessiontype, startdate, enddate)
+  values (3,15,3,'2013-01-01','2014-01-01')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,9 +5,8 @@ public class Movie {
 	private int id;
 	private String name, category, synopsis;
 
-	public Movie(int id, String name, String category, String synopsis) {
+	public Movie(String name, String category, String synopsis) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.category = category;
 		this.synopsis = synopsis;
@@ -39,5 +38,8 @@ public class Movie {
 
 	public int getId() {
 		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

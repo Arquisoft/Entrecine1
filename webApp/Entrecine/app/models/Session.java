@@ -1,21 +1,39 @@
 package models;
 
-import java.util.Calendar;
+import java.sql.Date;
 
 public class Session {
 
 	private int id, id_room, id_movie, id_sessionType;
-	private Calendar startDate, endDate;
+	private Date startDate, endDate;
 
-	public Session(int id, int id_room, int id_movie, int id_sessionType,
-			Calendar startDate, Calendar endDate) {
+	private Movie movie;
+	private String accesRoom;
+
+	public Session(int id_room, int id_movie, int id_sessionType,
+			Date startDate, Date endDate) {
 		super();
-		this.id = id;
 		this.id_room = id_room;
 		this.id_movie = id_movie;
 		this.id_sessionType = id_sessionType;
 		this.startDate = startDate;
 		this.endDate = endDate;
+	}
+
+	public String getAccesRoom() {
+		return accesRoom;
+	}
+
+	public void setAccesRoom(String accesRoom) {
+		this.accesRoom = accesRoom;
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
 	public int getId_room() {
@@ -42,19 +60,19 @@ public class Session {
 		this.id_sessionType = id_sessionType;
 	}
 
-	public Calendar getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Calendar startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public Calendar getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Calendar endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -62,4 +80,7 @@ public class Session {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 }

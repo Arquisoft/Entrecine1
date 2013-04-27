@@ -6,10 +6,9 @@ public class SysteUser {
 	private String login, passw, type;
 	private boolean mSale, mSession, mMovies;
 
-	public SysteUser(int id, String login, String passw, String type,
+	public SysteUser(String login, String passw, String type,
 			boolean mSale, boolean mSession, boolean mMovies) {
 		super();
-		this.id = id;
 		this.login = login;
 		this.passw = passw;
 		this.type = type;
@@ -69,5 +68,7 @@ public class SysteUser {
 	public int getId() {
 		return id;
 	}
-
+	public void setId(int id) {
+		this.id = id;
+	}
 }

@@ -5,10 +5,9 @@ public class Customer {
 	private int id;
 	private String name, surnames, email, creditCard, login, passw;
 
-	public Customer(int id, String name, String surnames, String email,
+	public Customer(String name, String surnames, String email,
 			String creditcard, String login, String passw) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.surnames = surnames;
 		this.email = email;
@@ -67,5 +66,9 @@ public class Customer {
 
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
