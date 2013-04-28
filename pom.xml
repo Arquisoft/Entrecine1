@@ -272,9 +272,9 @@
 			<properties />
 		</developer>
 		<developer>
-			<id>BenjaminAntomil</id>
-			<name>Benjamín Antomil Valledor</name>
-			<email></email>
+			<id>uo2017</id>
+			<name>Abdón Rodríguez Pérez</name>
+			<email>uo2017@uniovi.es</email>
 			<organization>WESO-University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
@@ -285,48 +285,9 @@
 			<properties />
 		</developer>
 		<developer>
-			<id>DiegoBarrantes</id>
-			<name>Diego Barrantes Montes</name>
-			<email>uo219317@uniovi.es</email>
-			<organization>WESO-University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
-				<role>Student</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>cduartej</id>
-			<name>Carlos Andrés Duarte Jiménez</name>
-			<email></email>
-			<organization>WESO-University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
-				<role>Student</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>MariaGallegoGarcia</id>
-			<name>María Gallego García</name>
-			<email></email>
-			<organization>WESO-University of Oviedo</organization>
-			<organizationUrl>http://www.uniovi.es</organizationUrl>
-			<roles>
-				<role>Developer</role>
-				<role>Student</role>
-			</roles>
-			<timezone>2</timezone>
-			<properties />
-		</developer>
-		<developer>
-			<id>DanielGB</id>
-			<name>Daniel García Baldomir</name>
-			<email></email>
+			<id>oscarrb</id>
+			<name>Óscar Rodríguez Pérez</name>
+			<email>uo218751@uniovi.es</email>
 			<organization>WESO-University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
@@ -337,4 +298,6 @@
 			<properties />
 		</developer>
 	</developers>
+
+
 </project>
