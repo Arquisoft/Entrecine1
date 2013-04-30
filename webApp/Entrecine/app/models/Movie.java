@@ -3,13 +3,14 @@ package models;
 public class Movie {
 
 	private int id;
-	private String name, category, synopsis;
+	private String name, category, synopsis, poster;
 
-	public Movie(String name, String category, String synopsis) {
+	public Movie(String name, String category, String synopsis, String poster) {
 		super();
 		this.name = name;
 		this.category = category;
 		this.synopsis = synopsis;
+		this.poster = poster;
 	}
 
 	public String getName() {
@@ -34,6 +35,14 @@ public class Movie {
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
+	}
+	
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
 	}
 
 	public int getId() {

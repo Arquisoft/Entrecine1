@@ -1,282 +1,101 @@
-/*C127*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C128*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C129*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C130*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C131*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C132*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C133*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C134*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C135*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C136*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C137*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C138*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C139*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C140*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C141*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C142*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C143*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C144*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C145*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C146*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C147*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C148*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C149*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C150*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C151*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C152*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C153*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C154*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C155*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C156*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C157*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C158*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C159*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C160*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C161*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C162*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C163*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C164*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C165*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C166*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C167*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C168*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C169*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C170*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C171*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C172*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C173*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C174*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C175*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C176*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C177*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C178*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C179*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C180*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C181*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C182*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C183*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C184*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C185*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C186*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C187*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C188*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C189*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C190*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C191*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C192*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C193*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C194*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C195*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C196*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C197*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C198*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C199*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C200*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C201*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C202*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C203*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C204*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C205*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C206*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C207*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C208*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C209*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C210*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C211*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C212*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C213*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C214*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C215*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C216*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C217*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C218*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C219*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C220*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C221*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C222*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C223*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C224*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C225*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C226*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C227*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C228*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C229*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C230*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C231*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C232*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C233*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C234*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C235*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C236*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C237*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C238*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C239*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C240*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C241*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C242*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C243*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C244*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C245*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C246*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C247*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C248*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C249*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C250*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C251*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C252*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C253*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C254*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C255*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C256*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C257*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C258*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C259*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C260*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C261*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C262*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C263*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C264*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C265*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C266*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C267*/SET SCHEMA PUBLIC
+/*C2*/SET SCHEMA PUBLIC
+\u000aCREATE TABLE ROOM\u000a(ID INTEGER NOT NULL IDENTITY,\u000aACCESS VARCHAR(25),\u000aSEATINGCAPACITY INTEGER\u000a)\u000a\u000a
+CREATE TABLE SESSIONTYPE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSTARTTIME INTEGER,\u000aCOST DOUBLE\u000a)\u000a\u000a
+CREATE TABLE CUSTOMER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(25),\u000aSURNAMES VARCHAR(25),\u000aEMAIL VARCHAR(100),\u000aCREDITCARD VARCHAR(25),\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aUNIQUE (LOGIN))\u000a\u000a
+CREATE TABLE MOVIE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aNAME VARCHAR(100),\u000aCATEGORY VARCHAR(100),\u000aSYNOPSIS LONGVARCHAR\u000a)\u000a\u000a
+CREATE TABLE SESSION\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_ROOM INTEGER,\u000aID_MOVIE INTEGER,\u000aID_SESSIONTYPE INTEGER,\u000aSTARTDATE DATE,\u000aENDDATE DATE\u000a)
+ALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_ROOM) \u000aREFERENCES ROOM(ID)\u000a\u000a
+ALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_MOVIE) \u000aREFERENCES MOVIE(ID)\u000a\u000a
+ALTER TABLE SESSION\u000aADD FOREIGN KEY (ID_SESSIONTYPE) \u000aREFERENCES SESSIONTYPE(ID)\u000a
+CREATE TABLE PLACE\u000a(ID INTEGER NOT NULL IDENTITY,\u000aID_SESSION INTEGER,\u000aSEAT INTEGER,\u000aID_CUSTOMER INTEGER,\u000aCREDITCARD VARCHAR(25),\u000aAMOUNT DOUBLE,\u000aPAYMENTDATE DATE\u000a)\u000a
+ALTER TABLE PLACE\u000aADD FOREIGN KEY (ID_SESSION) \u000aREFERENCES SESSION(ID)\u000a\u000a
+ALTER TABLE PUBLIC.PLACE\u000aADD FOREIGN KEY (ID_CUSTOMER) \u000aREFERENCES CUSTOMER(ID)\u000a
+\u000aCREATE TABLE SYSTEMUSER\u000a(ID INTEGER NOT NULL IDENTITY,\u000aLOGIN VARCHAR(25) NOT NULL,\u000aPASSW VARCHAR(25),\u000aTYPE VARCHAR(25),\u000aMSALE BOOLEAN,\u000aMSESSION BOOLEAN,\u000aMMOVIES BOOLEAN,\u000aUNIQUE (LOGIN))
+INSERT INTO SYSTEMUSER VALUES(0,'admin','admin','admin',TRUE,TRUE,TRUE)
+COMMIT
+INSERT INTO SYSTEMUSER VALUES(1,'user','user','user',TRUE,FALSE,FALSE)
+COMMIT
+INSERT INTO SYSTEMUSER VALUES(2,'user2','user2','user',TRUE,TRUE,FALSE)
+COMMIT
+INSERT INTO CUSTOMER VALUES(0,'TVP','TVP','TVP@ENTRECINE','','','')
+COMMIT
+INSERT INTO CUSTOMER VALUES(1,'carlos','duarte','carlos@ENTRECINE','123456','carlos','carlos')
+COMMIT
+INSERT INTO CUSTOMER VALUES(2,'diego','barrantes','diego@ENTRECINE','123456','diego','diego')
+COMMIT
+INSERT INTO CUSTOMER VALUES(3,'maria','gallego','maria@ENTRECINE','123456','maria','maria')
+COMMIT
+INSERT INTO CUSTOMER VALUES(4,'benjamin','antomil','benjamin@ENTRECINE','123456','benjamin','benjamin')
+COMMIT
+INSERT INTO CUSTOMER VALUES(5,'daniel','gracia','@ENTRECINE','123456','daniel','daniel')
+COMMIT
+INSERT INTO ROOM VALUES(0,'room1',50)
+COMMIT
+INSERT INTO ROOM VALUES(1,'room2',40)
+COMMIT
+INSERT INTO ROOM VALUES(2,'room3',40)
+COMMIT
+INSERT INTO ROOM VALUES(3,'room4',30)
+COMMIT
+INSERT INTO ROOM VALUES(4,'room5',30)
+COMMIT
+INSERT INTO SESSIONTYPE VALUES(0,'ma\u00f1ana',12,12.0E0)
+COMMIT
+INSERT INTO SESSIONTYPE VALUES(1,'media-tarde',16,15.0E0)
+COMMIT
+INSERT INTO SESSIONTYPE VALUES(2,'tarde',19,16.0E0)
+COMMIT
+INSERT INTO SESSIONTYPE VALUES(3,'tarde-noche',22,15.0E0)
+COMMIT
+INSERT INTO MOVIE VALUES(0,'Un gran equipo','comedia','Patrick Orb\u00e9ra (Jos\u00e9 Garc\u00eda), es una vieja gloria del f\u00fatbol que no ha logrado reconvertirse. Sin trabajo y arruinado, ha perdido incluso el derecho a ver a su hija Laura. Apremiado por un juez para que consiga un empleo estable, no le queda otra elecci\u00f3n m\u00e1s que irse a una peque\u00f1a isla bretona para entrenar al equipo de f\u00fatbol local.')
+COMMIT
+INSERT INTO MOVIE VALUES(1,'Iron Man 3','ciencia ficcion','En Iron Man 3 de Marvel, el descarado pero brillante empresario Tony Stark/Iron Man se enfrentar\u00e1 a un enemigo cuyo poder no conoce l\u00edmites. Cuando Stark comprende que su enemigo ha destruido su universo personal, se embarca en una angustiosa b\u00fasqueda para encontrar a los responsables. ')
+COMMIT
+INSERT INTO MOVIE VALUES(2,'La caza','drama','Tras un divorcio dif\u00edcil, Lucas, de cuarenta a\u00f1os, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relaci\u00f3n con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita.')
+COMMIT
+INSERT INTO MOVIE VALUES(3,'On the Road','drama','Nada m\u00e1s morir su padre, Sal Paradise (Sam Riley), un neoyorkino aspirante a escritor, conoce a Dean Moriarty (Garrett Hedlund), un ex-convicto de un encanto arrollador y casado con la s\u00faper liberada y seductora Marylou (Kristen Stewart).')
+COMMIT
+INSERT INTO MOVIE VALUES(4,'To the Wonder','drama','Neil, un aspirante a escritor, y Marina, una joven madre, est\u00e1n juntos en la isla francesa de St Michel, conocida en Francia como la maravilla del mundo occidental, revitalizados por las sensaciones de estar de nuevo enamorados. Neil ha dejado Estados Unidos buscando una vida mejor, dejando atr\u00e1s una serie de hechos dolorosos. Mirando a Marina a los ojos, Neil est\u00e1 seguro de que ha encontrado a la mujer que puede amar con dedicaci\u00f3n.')
+COMMIT
+INSERT INTO MOVIE VALUES(5,'Oblivion','ciencia ficcion','Tom Cruise protagoniza OBLIVION, un acontecimiento cinematogr\u00e1fico tan original como innovador del director de TRON: Legacy y del productor de El planeta de los simios. En un futuro planeta Tierra espectacular que ha evolucionado hasta ser irreconocible, un hombre se enfrenta al pasado y toma el camino de la redenci\u00f3n mientras lucha para salvar a la raza humana. ')
+COMMIT
+INSERT INTO MOVIE VALUES(6,'LOL','comedia','Remake americano de la pel\u00edcula francesa de 2008 del mismo nombre. La cinta cuenta la historia de una chica de 16 a\u00f1os de edad que, abandonada por su novio tras una experiencia sexual, pone su mirada en su mejor amigo. Al mismo tiempo, su madre divorciada de 40 a\u00f1os de edad, lucha por seguir adelante con su vida.')
+COMMIT
+INSERT INTO MOVIE VALUES(7,'Tipos legales','comedia','VAL (Al Pacino) sale de la c\u00e1rcel tras cumplir 28 a\u00f1os de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex g\u00e1nsteres deciden empezar a recuperar esa misma noche los d\u00edas de gloria y las d\u00e9cadas de crimen, drogas y sexo perdidas.')
+COMMIT
+INSERT INTO MOVIE VALUES(8,'Posesi\u00f3n infernal','terror','Cinco veintea\u00f1eros se refugian en una remota caba\u00f1a donde descubren El Libro de los Muertos y sin ser conscientes de ello despiertan a los demonios que habitan en los bosques cercanos. Sucesivamente todos los j\u00f3venes son pose\u00eddos menos uno, quien tiene que enfrentarse al mal y luchar por su vida.')
+COMMIT
+INSERT INTO MOVIE VALUES(9,'Efectos secundarios','suspense','The Side Effects estar\u00e1 ambientada en el mundo de la psicofarmacolog\u00eda (el estudio de c\u00f3mo las drogas afectan la mente humana). Zeta-Jones dar\u00e1 vida a una m\u00e9dico que se convierte en una adicta a las drogas con receta y comienza un romance con el personaje de Jude Law. Channing Tatum por su parte interpretar\u00e1 al marido del personaje de Rooney Mara, un preso que en breve ser\u00e1 libre.')
+COMMIT
+INSERT INTO MOVIE VALUES(10,'Tesis sobre un homicidio','suspense','Roberto Berm\u00fadez tiene 55 a\u00f1os, es abogado de larga y reconocida trayectoria aunque ahora, alejado ya de la actividad legal, dedica sus d\u00edas a la docencia. Su vida personal es m\u00e1s bien ca\u00f3tica. Separado de su mujer desde hace varios a\u00f1os no ha logrado una relaci\u00f3n amorosa estable desde entonces y para evacuar sus urgencias sexuales se permite, no sin algo culpa, enredarse con alguna de sus ex-alumnas. Su escepticismo y su soberbia han ido creciendo a la par de su afici\u00f3n por el whisky. ')
+COMMIT
+INSERT INTO MOVIE VALUES(11,'The Host','ciencia ficcion','Nuestro mundo ha sido invadido por un enemigo desconocido. Los seres humanos se han convertido en hu\u00e9spedes de los invasores, que se han apoderado de sus mentes manteniendo el cuerpo intacto. Casi toda la humanidad ha sucumbido a esta invasi\u00f3n. Cuando Melanie (Saoirse Ronan), uno de los pocos humanos \u00absalvajes\u00bb que quedan, se ve capturada, est\u00e1 convencida de que ha llegado su fin. Wanderer, el \u00abalma\u00bb invasora asignada al cuerpo de Melanie, ya est\u00e1 avisada de las dificultades que implica vivir dentro de un ser humano: ')
+COMMIT
+INSERT INTO MOVIE VALUES(12,'G.I.Joe: la venganza','accion','En esta ocasi\u00f3n los G.I. Joes no tendr\u00e1n que luchar \u00fanicamente contra su mortal enemigo, Cobra, sino que adem\u00e1s tendr\u00e1n que v\u00e9rselas con amenazas dentro del propio gobierno que pondr\u00e1n en peligro su existencia')
+COMMIT
+INSERT INTO SESSION VALUES(0,0,0,0,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(1,1,1,0,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(2,2,2,0,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(3,3,3,0,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(4,0,4,1,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(5,1,5,1,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(6,3,6,1,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(7,0,7,2,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(8,1,8,2,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(9,2,9,2,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(10,3,10,2,'2013-01-01','2014-01-01')
+COMMIT
+INSERT INTO SESSION VALUES(11,0,11,3,'2013-01-01','2014-01-01')
+COMMIT
+/*C3*/SET SCHEMA PUBLIC
 DISCONNECT
