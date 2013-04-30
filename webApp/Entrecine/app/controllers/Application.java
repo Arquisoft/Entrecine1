@@ -16,10 +16,6 @@ import views.html.*;
 public class Application extends Controller {
 
 	public static Result index() {
-		return ok(index.render("Your new application is ready."));
-	}
-
-	public static Result sessions() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<Session> ls = new ArrayList<Session>();
 		String message = "";
@@ -29,6 +25,23 @@ public class Application extends Controller {
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(billBoard.render(message, ls));
+		return ok(index.render(message, ls));
+	}
+
+	public static Result register() {
+		return ok(register.render("Your new application is ready."));
+	}
+	
+	public static Result details() {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		List<Session> ls = new ArrayList<Session>();
+		String message = "";
+		try {
+			ls = pf.getBillBoard();
+			message = " Exito";
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		}
+		return ok(details.render(message, ls));
 	}
 }
