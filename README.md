@@ -9,7 +9,7 @@ Marta Jiménez Franco(?)
 
 Benjamin Antomil Valledor
 
-DiegoBarrantes MontesDiego
+Diego Barrantes Montes
 
 Carlos Andrés Duarte Jimenez
 
