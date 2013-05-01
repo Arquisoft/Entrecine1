@@ -4,20 +4,21 @@ import java.sql.Date;
 
 public class Session {
 
-	private int id, id_room, id_movie, id_sessionType;
+	private int id, id_room, id_movie;
 	private Date startDate, endDate;
 
 	private Movie movie;
 	private String accesRoom;
+	
+	private SessionType sessionType;
 
-	public Session(int id_room, int id_movie, int id_sessionType,
-			Date startDate, Date endDate) {
+	public Session(int id_room, int id_movie, Date startDate, Date endDate, SessionType sessionType) {
 		super();
 		this.id_room = id_room;
 		this.id_movie = id_movie;
-		this.id_sessionType = id_sessionType;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.sessionType = sessionType;
 	}
 
 	public String getAccesRoom() {
@@ -52,12 +53,12 @@ public class Session {
 		this.id_movie = id_movie;
 	}
 
-	public int getId_sessionType() {
-		return id_sessionType;
+	public SessionType getSessionType() {
+		return sessionType;
 	}
 
-	public void setId_sessionType(int id_sessionType) {
-		this.id_sessionType = id_sessionType;
+	public void setSsessionType(SessionType sessionType) {
+		this.sessionType = sessionType;
 	}
 
 	public Date getStartDate() {
