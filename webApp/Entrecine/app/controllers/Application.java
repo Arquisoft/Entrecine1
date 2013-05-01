@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Session;
+import models.*;
 
 import persistence.PersistenceFactory;
 import persistence.PersistenceFactoryImpl;
@@ -17,31 +17,33 @@ public class Application extends Controller {
 
 	public static Result index() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
-		List<Session> ls = new ArrayList<Session>();
+		List<Movie> lm = new ArrayList<Movie>();
 		String message = "";
 		try {
-			ls = pf.getBillBoard();
+			lm = pf.getMovies();
 			message = "Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(index.render(message, ls));
+		return ok(index.render(message, lm));
 	}
 
-	public static Result register() {
-		return ok(register.render("Your new application is ready."));
-	}
-	
-	public static Result details() {
+	public static Result details(Integer id_movie) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<Session> ls = new ArrayList<Session>();
 		String message = "";
+		String synopsis = "";
 		try {
-			ls = pf.getBillBoard();
+			ls = pf.getSessionsByMovie(id_movie);
+			synopsis = pf.getSynopsis(id_movie);
 			message = " Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(details.render(message, ls));
+		return ok(details.render(message, synopsis, ls));
+	}
+
+	public static Result register() {
+		return ok(register.render("Your new application is ready."));
 	}
 }

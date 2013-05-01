@@ -2,15 +2,25 @@ package models;
 
 public class Movie {
 
-	private int id;
+	private Integer id;
 	private String name, category, synopsis, poster;
 
-	public Movie(String name, String category, String synopsis, String poster) {
+	public Movie(Integer id, String name, String category, String synopsis,
+			String poster) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.category = category;
 		this.synopsis = synopsis;
 		this.poster = poster;
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -36,19 +46,12 @@ public class Movie {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	
+
 	public String getPoster() {
 		return poster;
 	}
 
 	public void setPoster(String poster) {
 		this.poster = poster;
-	}
-
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 }

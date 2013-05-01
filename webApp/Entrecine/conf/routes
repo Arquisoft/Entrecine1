@@ -5,8 +5,8 @@
 # Home page
 GET     /	                        controllers.Application.index()
 POST    /                           controllers.Application.register()
-GET     /index                      controllers.Application.details()
-GET     /details                    controllers.Application.details()
+GET     /                           controllers.Application.details(id_movie: Integer)
+GET     /details                   controllers.Application.details(id_movie: Integer)
 POST    /details                    controllers.Application.register()
 
 

@@ -13,7 +13,7 @@ public class JdbcExecute {
 
 	private Connection con;
 	private ResultSet rs;
-	private Statement st;
+	private PreparedStatement ps ;
 
 	private JdbcExecute() {
 	}
@@ -33,24 +33,59 @@ public class JdbcExecute {
 
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(URL, USER, PASS);
-		//return DB.getConnection();//no funciona.
+		// return DB.getConnection();//no funciona.
 	}
-
+/*
 	public void setQuery(String query) throws SQLException {
 		con = getConnection();
-		st = con.createStatement();
-		st.executeUpdate(query);
+		ps = con.createStatement();
+		ps.executeUpdate(query);
 		con.close();
-		st.close();
+		ps.close();
 	}
 
 	public ResultSet getQuery(String query) throws SQLException {
 		con = getConnection();
-		st = con.createStatement();
-		rs = st.executeQuery(query);
+		ps = con.createStatement();
+		rs = ps.executeQuery(query);
 		con.close();
-		st.close();
+		ps.close();
 		return rs;
+	}*/
+
+	public void createStatement(String query) {
+		try {
+			con = getConnection();
+			ps = con.prepareStatement(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void close() {
+		try {
+			rs.close();
+			con.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getCon() {
+		return con;
+	}
+
+	public ResultSet getRs() {
+		return rs;
+	}
+	
+	public void setRs(ResultSet rs) {
+		this.rs = rs;
+	}
+
+	public PreparedStatement getPs() {
+		return ps;
 	}
 
 }

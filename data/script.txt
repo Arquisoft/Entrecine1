@@ -46,6 +46,26 @@ STARTDATE DATE,
 ENDDATE DATE
 )
 
+CREATE TABLE SYSTEMUSER
+(ID INTEGER NOT NULL IDENTITY,
+LOGIN VARCHAR(25) NOT NULL,
+PASSW VARCHAR(25),
+TYPE VARCHAR(25),
+MSALE BOOLEAN,
+MSESSION BOOLEAN,
+MMOVIES BOOLEAN,
+UNIQUE (LOGIN))
+
+CREATE TABLE PLACE
+(ID INTEGER NOT NULL IDENTITY,
+ID_SESSION INTEGER,
+SEAT INTEGER,
+ID_CUSTOMER INTEGER,
+CREDITCARD VARCHAR(25),
+AMOUNT DOUBLE,
+PAYMENTDATE DATE
+)
+
 ALTER TABLE SESSION
 ADD FOREIGN KEY (ID_ROOM) 
 REFERENCES ROOM(ID)
@@ -58,16 +78,6 @@ ALTER TABLE SESSION
 ADD FOREIGN KEY (ID_SESSIONTYPE) 
 REFERENCES SESSIONTYPE(ID)
 
-CREATE TABLE PLACE
-(ID INTEGER NOT NULL IDENTITY,
-ID_SESSION INTEGER,
-SEAT INTEGER,
-ID_CUSTOMER INTEGER,
-CREDITCARD VARCHAR(25),
-AMOUNT DOUBLE,
-PAYMENTDATE DATE
-)
-
 ALTER TABLE PLACE
 ADD FOREIGN KEY (ID_SESSION) 
 REFERENCES SESSION(ID)
@@ -75,16 +85,6 @@ REFERENCES SESSION(ID)
 ALTER TABLE PUBLIC.PLACE
 ADD FOREIGN KEY (ID_CUSTOMER) 
 REFERENCES CUSTOMER(ID)
-
-CREATE TABLE SYSTEMUSER
-(ID INTEGER NOT NULL IDENTITY,
-LOGIN VARCHAR(25) NOT NULL,
-PASSW VARCHAR(25),
-TYPE VARCHAR(25),
-MSALE BOOLEAN,
-MSESSION BOOLEAN,
-MMOVIES BOOLEAN,
-UNIQUE (LOGIN))
 
 insert into systemuser (login,passw,type,msale,msession,mmovies)
   values('admin','admin','admin',true,true,true);
@@ -130,7 +130,7 @@ insert into sessiontype (name, starttime, cost)
 insert into movie (name, category, synopsis, poster)
   values ('Un gran equipo','comedia','Patrick Orbéra (José García), es una vieja gloria del fútbol que no ha logrado reconvertirse. Sin trabajo y arruinado, ha perdido incluso el derecho a ver a su hija Laura. Apremiado por un juez para que consiga un empleo estable, no le queda otra elección más que irse a una pequeña isla bretona para entrenar al equipo de fútbol local.','assets/images/un-gran-equipo.jpg')
 insert into movie (name, category, synopsis, poster)
-  values ('Iron Man 3','ciencia ficcion','En Iron Man 3 de Marvel, el descarado pero brillante empresario Tony Stark/Iron Man se enfrentará a un enemigo cuyo poder no conoce límites. Cuando Stark comprende que su enemigo ha destruido su universo personal, se embarca en una angustiosa búsqueda para encontrar a los responsables.','assets/images/iron-man-3.png')
+  values ('Iron Man 3','ciencia ficcion','En Iron Man 3 de Marvel, el descarado pero brillante empresario Tony Stark/Iron Man se enfrentará a un enemigo cuyo poder no conoce límites. Cuando Stark comprende que su enemigo ha destruido su universo personal, se embarca en una angustiosa búsqueda para encontrar a los responsables.','assets/images/iron-man-3.jpg')
 insert into movie (name, category, synopsis, poster)
   values ('La caza','drama','Tras un divorcio difícil, Lucas, de cuarenta años, ha conocido a otra mujer, tiene un nuevo trabajo y se dispone a reconstruir la relación con Marcus, su hijo adolescente. Pero algo va mal. Un detalle. Un comentario inocente. Una mentira fortuita.','assets/images/la-caza.jpg')
 insert into movie (name, category, synopsis, poster)
@@ -142,7 +142,7 @@ insert into movie (name, category, synopsis, poster)
 insert into movie (name, category, synopsis, poster)
   values ('LOL','comedia','Remake americano de la película francesa de 2008 del mismo nombre. La cinta cuenta la historia de una chica de 16 años de edad que, abandonada por su novio tras una experiencia sexual, pone su mirada en su mejor amigo. Al mismo tiempo, su madre divorciada de 40 años de edad, lucha por seguir adelante con su vida.','assets/images/lol.jpg')
 insert into movie (name, category, synopsis, poster)
-  values ('Tipos legales','comedia','VAL (Al Pacino) sale de la cárcel tras cumplir 28 años de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex gánsteres deciden empezar a recuperar esa misma noche los días de gloria y las décadas de crimen, drogas y sexo perdidas.','assets/images/tipo-legales.jpg')
+  values ('Tipos legales','comedia','VAL (Al Pacino) sale de la cárcel tras cumplir 28 años de condena. Su mejor amigo, DOC (Christopher Walken) le espera a la salida y juntos van en busca de otro viejo colega, HIRSCH (Alan Arkin). A pesar de la edad, los tres ex gánsteres deciden empezar a recuperar esa misma noche los días de gloria y las décadas de crimen, drogas y sexo perdidas.','assets/images/tipos-legales.jpg')
 insert into movie (name, category, synopsis, poster)
   values ('Posesión infernal','terror','Cinco veinteañeros se refugian en una remota cabaña donde descubren El Libro de los Muertos y sin ser conscientes de ello despiertan a los demonios que habitan en los bosques cercanos. Sucesivamente todos los jóvenes son poseídos menos uno, quien tiene que enfrentarse al mal y luchar por su vida.','assets/images/posesion-infernal.jpg')
 insert into movie (name, category, synopsis, poster)

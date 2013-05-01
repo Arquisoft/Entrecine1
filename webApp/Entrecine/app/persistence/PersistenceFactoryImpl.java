@@ -28,8 +28,19 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	}
 
 	@Override
-	public List<Session> getBillBoard() throws SQLException {
-		return sj.getBillBoard();
+	public List<Movie> getMovies() throws SQLException {
+		return sj.getMovies();
+	}
+
+	@Override
+	public String getSynopsis(Integer id_movie) throws SQLException {
+		return sj.getSynopsis(id_movie);
+	}
+
+	@Override
+	public List<Session> getSessionsByMovie(Integer id_movie)
+			throws SQLException {
+		return sj.getSessionsByMovie(id_movie);
 	}
 
 	@Override
