@@ -21,7 +21,7 @@ public class Application extends Controller {
 		String message = "";
 		try {
 			ls = pf.getBillBoard();
-			message = " Exito";
+			message = "Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}

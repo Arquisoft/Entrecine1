@@ -36,13 +36,13 @@
 
 		<div id="box">
 			<div class="head">
-				<h2>Cartelera</h2>
+				<h2>@message</h2>
 			</div>
 			@for( s <- sessions) {
 			<div class="movie">
 				<div class="movie-image">
-					<span class="play"><span class="name"></span></span> <a href="details"><image
-							src="assets/images/movie1.jpg"></a>
+					<span class="play"></span> <a href="details"> <image
+							src="@s.getMovie.getPoster"></a>
 				</div>
 				<div class="name">
 					<p>@s.getMovie.getName</p>

@@ -18,9 +18,10 @@ public class SessionDAO {
 	}
 
 	public List<Session> getBillBoard() throws SQLException {
-		String query = "select s.*, m.name, m.category, m.synopsis, r.access"
+		String query = "select s.*, m.*, r.access"
 				+ " from session s, movie m, room r "
-				+ " where s.id_room=r.id" + " and s.id_movie=m.id;";
+				+ " where s.id_room=r.id"
+				+ " and s.id_movie=m.id;";
 		ResultSet rs = jdbc.getQuery(query);
 
 		List<Session> listSessions = new ArrayList<Session>();
@@ -29,7 +30,7 @@ public class SessionDAO {
 
 		while (rs.next()) {
 			m = new Movie(rs.getString("name"), rs.getString("category"),
-					rs.getString("synopsis"));
+					rs.getString("synopsis"), rs.getString("poster"));
 			s = new Session(rs.getInt("id_room"), rs.getInt("id_movie"),
 					rs.getInt("id_sessionType"), rs.getDate("startDate"),
 					rs.getDate("endDate"));
