@@ -13,7 +13,7 @@ public class JdbcExecute {
 
 	private Connection con;
 	private ResultSet rs;
-	private PreparedStatement ps;
+	private PreparedStatement ps ;
 
 	private JdbcExecute() {
 	}

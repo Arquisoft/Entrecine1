@@ -1,5 +1,6 @@
 package persistence.impl;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import models.Session;
 public class SessionDAO {
 
 	JdbcExecute jdbc;
+	PreparedStatement ps;
 
 	public SessionDAO() {
 		jdbc = JdbcExecute.getInstance();
@@ -18,9 +20,10 @@ public class SessionDAO {
 
 	public List<Session> getBillBoard() throws SQLException {
 		String query = "select s.*, m.name, m.category, m.synopsis, r.access"
-				+ " from session s, movie m, room r "
-				+ " where s.id_room=r.id" + " and s.id_movie=m.id;";
-		jdbc.setRs(jdbc.getPs().executeQuery(query));
+				+ " from session s, movie m, room r " + " where s.id_room=r.id"
+				+ " and s.id_movie=m.id;";
+		jdbc.createStatement(query);
+		jdbc.setRs(jdbc.getPs().executeQuery());
 
 		List<Session> listSessions = new ArrayList<Session>();
 		Session s;
