@@ -74,7 +74,6 @@ public class SessionDAO {
 						jdbc.getRs().getDate("startDate"), jdbc.getRs()
 								.getDate("endDate"), sessionType);
 				session.setId(jdbc.getRs().getInt("id"));
-				session.setAccesRoom(jdbc.getRs().getString("access"));
 				listSessions.add(session);
 			}
 		} catch (SQLException e) {
