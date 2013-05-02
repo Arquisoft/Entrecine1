@@ -10,16 +10,20 @@ import models.Session;
 
 public interface PersistenceFactory {
 
-	void setCustomer(Customer c)  throws SQLException ;
+	void setCustomer(Customer c) throws SQLException;
 
-	Customer getCustomer(String login, String passw) throws SQLException ;
+	Customer getCustomer(String login, String passw) throws SQLException;
 
-	void newCustomer(Customer c) throws SQLException ;
+	void newCustomer(Customer c) throws SQLException;
 
-	List<Session> getBillBoard() throws SQLException ;
+	List<Movie> getMovies() throws SQLException;
 
-	boolean getAvaliability(int idSession, int seat) throws SQLException ;
+	String getSynopsis(Integer id_movie) throws SQLException;
 
-	void newReservation(Place p) throws SQLException ;
+	List<Session> getSessionsByMovie(Integer id_movie) throws SQLException;
+
+	boolean getAvaliability(int idSession, int seat) throws SQLException;
+
+	void newReservation(Place p) throws SQLException;
 
 }

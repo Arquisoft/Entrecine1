@@ -15,19 +15,35 @@ import views.html.*;
 public class Application extends Controller {
 
 	public static Result index() {
-		return ok(index.render("Your new application is ready."));
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		List<Movie> lm = new ArrayList<Movie>();
+		String message = "";
+		try {
+			lm = pf.getMovies();
+			message = "Exito";
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		}
+		return ok(index.render(message, lm));
 	}
 
-	public static Result sessions() {
+	public static Result details(Integer id_movie) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<Session> ls = new ArrayList<Session>();
 		String message = "";
+		String synopsis = "";
 		try {
-			ls = pf.getBillBoard();
+			ls = pf.getSessionsByMovie(id_movie);
+			synopsis = pf.getSynopsis(id_movie);
 			message = " Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(billBoard.render(message, ls));
+		return ok(details.render(message, synopsis, ls));
 	}
+
+	public static Result register() {
+		return ok(register.render("Your new application is ready."));
+	}
+	
 }
