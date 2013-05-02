@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import models.Customer;
+import models.Movie;
 import models.Place;
 import models.Session;
 
