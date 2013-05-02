@@ -1,0 +1,70 @@
+@(message : String ,synopsis : String, sessions: List[Session])
+@main("Detalles") {
+
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/stylesheets/main.css"
+	type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div class="login">
+			<form class="registro" method="post" action="">
+				<label>Usuario:</label> <input type="text" name="nombre" value="" />
+				<label>Password:</label> <input type="password" name="password"
+					value="" /> <input type="submit" name="botonEntrar" value="Entrar" /><input
+					type="submit" name="botonRegistrar" value="Registrar"
+					href="register" />
+				<p>
+					<a href="">¿Olvidaste tu contraseña retarded?</a>
+				</p>
+			</form>
+		</div>
+		<div id="header">
+			<h1 id="logo">
+				<a href="#"><image src="assets/images/logo.png"></a>
+			</h1>
+			<div id="navigation">
+				<ul>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Reservas</a></li>
+					<li><a href="#">Sobre nosotros</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+		<div id="box">
+			<div class="head">
+				<h2>Detalles de la pelicula</h2>
+			</div>
+			<div class="name">
+				<p>@synopsis</p>
+			</div>
+			<div class="cl">&nbsp;</div>
+			<div class="head">
+				<h2>Sessiones disponibles</h2>
+			</div>
+			@for( s <- sessions) {
+			<ul>
+				<li>@s.getSessionType.getStartTime : 00h
+					@s.getSessionType.getName</li>
+				<p>Sala : @s.getId_room</p>
+				<p>Coste de la entrada : @s.getSessionType.getCost €</p>
+			</ul>
+			<br>
+			<form class="reserva" method="post" action="">
+				<input type="submit" name="botonReservar" value="Reservar" />
+			</form>
+			<br>
+			<div class="cl">&nbsp;</div>
+		</div>
+
+		}
+
+		<div id="footer">Copyright &copy; 2013 Entrecine - Todos los
+			derechos reservados</div>
+	</div>
+</body>
+</html>
+}

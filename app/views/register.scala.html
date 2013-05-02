@@ -1,0 +1,74 @@
+@(message : String) @main("Registro") {
+
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/stylesheets/main.css"
+	type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div class="login">
+			<form class="registro" method="post" action="">
+				<label>Usuario:</label> <input type="text" name="nombre" value="" />
+				<label>Password:</label> <input type="password" name="password"
+					value="" /> <input type="submit" name="botonEntrar" value="Entrar" /><input
+					type="submit" name="botonRegistrar" value="Registrar"
+					href="register" />
+				<p>
+					<a href="">¿Olvidaste tu contraseña retarded?</a>
+				</p>
+			</form>
+		</div>
+		<div id="header">
+			<h1 id="logo">
+				<a href="#"><image src="assets/images/logo.png"></a>
+			</h1>
+			<div id="navigation">
+				<ul>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Reservas</a></li>
+					<li><a href="#">Sobre nosotros</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+
+		<div id="box">
+			<div class="head">
+				<h2>Registro</h2>
+			</div>
+
+			<form class=form action="">
+					<div class=reg>
+						<label for="name">Nombre</label> <input type="text" id="nombre" />
+					</div>
+					<div class=reg>
+						<label for="surname">Apellidos</label> <input type="text"
+							id="apellidos"/>
+					</div>
+					<div class=reg>
+						<label for="email">Email</label> <input type="text" id="nombre" />
+					</div>
+					<div class=reg>
+						<label for="creditcard">Tarjeta de credito</label> <input
+							type="text" id="nombre" />
+					</div>
+					<div class=reg>
+						<label for="password">Password</label> <input type="password"
+							id="nombre" />
+					</div>
+					<div class=reg>
+						<INPUT type="submit" value="Enviar"> <INPUT type="reset">
+					</div>
+			</form>
+			<br>
+			<div class="cl">&nbsp;</div>
+		</div>
+
+		<div id="footer">Copyright &copy; 2013 Entrecine - Todos los
+			derechos reservados</div>
+	</div>
+</body>
+</html>
+}
