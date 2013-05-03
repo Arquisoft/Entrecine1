@@ -11,6 +11,7 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	private CustomerDAO cj = new CustomerDAO();
 	private PlaceDAO pj = new PlaceDAO();
 	private SessionDAO sj = new SessionDAO();
+	private MovieDAO mj = new MovieDAO();
 
 	@Override
 	public void setCustomer(Customer c) throws SQLException {
@@ -29,12 +30,12 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 
 	@Override
 	public List<Movie> getMovies() throws SQLException {
-		return sj.getMovies();
+		return mj.getMovies();
 	}
 
 	@Override
 	public String getSynopsis(Integer id_movie) throws SQLException {
-		return sj.getSynopsis(id_movie);
+		return mj.getSynopsis(id_movie);
 	}
 
 	@Override

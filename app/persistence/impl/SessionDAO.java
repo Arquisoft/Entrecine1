@@ -5,10 +5,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import persistence.JdbcExecute;
-import models.Movie;
 import models.Session;
 import models.SessionType;
+import persistence.JdbcExecute;
 
 public class SessionDAO {
 
@@ -19,38 +18,6 @@ public class SessionDAO {
 		jdbc = JdbcExecute.getInstance();
 	}
 
-	public List<Movie> getMovies() throws SQLException {
-		String query = "select m.* " +
-						"from movie m";
-		jdbc.createStatement(query);
-		jdbc.setRs(jdbc.getPs().executeQuery());
-
-		List<Movie> listMovies = new ArrayList<Movie>();
-		Movie m;
-
-		while (jdbc.getRs().next()) {
-			m = new Movie(jdbc.getRs().getInt("ID"), jdbc.getRs().getString(
-					"name"), jdbc.getRs().getString("category"), jdbc.getRs()
-					.getString("synopsis"), jdbc.getRs().getString("poster"));
-			listMovies.add(m);
-		}
-		return listMovies;
-	}
-
-	public String getSynopsis(Integer id_movie) throws SQLException {
-		String query = "select m.synopsis " +
-						"from movie m where m.id=?";
-		jdbc.createStatement(query);
-		jdbc.getPs().setInt(1, id_movie);
-		jdbc.setRs(jdbc.getPs().executeQuery());
-
-		String synopsis = "";
-
-		while (jdbc.getRs().next()) {
-			synopsis = jdbc.getRs().getString("synopsis");
-		}
-		return synopsis;
-	}
 	
 	public List<Session> getSessionsByMovie(int id_movie) {
 		List<Session> listSessions = new ArrayList<Session>();
