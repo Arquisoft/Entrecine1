@@ -66,4 +66,30 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 		return sj.getPlaceBySession(id_session);
 	}
 
+	@Override
+	public void addMovie(Movie m) throws SQLException {
+		// TODO Auto-generated method stub
+		mj.addMovie(m);
+		
+	}
+
+	@Override
+	public void updateMovie(Movie m) throws SQLException {
+		// TODO Auto-generated method stub
+		mj.updateMovie(m);
+		
+	}
+
+	@Override
+	public void changePrice(SessionType st) throws SQLException {
+		// TODO Auto-generated method stub
+		sj.changePrice(st);
+	}
+
+	@Override
+	public void changeStartTime(SessionType st) throws SQLException {
+		// TODO Auto-generated method stub
+		sj.changeStartTime(st);
+	}
+
 }

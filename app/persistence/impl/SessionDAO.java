@@ -96,4 +96,32 @@ public class SessionDAO {
 		}
 		return places;
 	}
+	
+	public void changePrice(SessionType st){
+		String query="update sessiontype set cost=? where id=?";
+		try {
+			jdbc.createStatement(query);
+			jdbc.getPs().setDouble(1, st.getCost());
+			jdbc.getPs().setInt(2, st.getId());
+			jdbc.getPs().executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void changeStartTime(SessionType st){
+		String query="update sessiontype set starttime=? where id=?";
+		try {
+			jdbc.createStatement(query);
+			jdbc.getPs().setInt(1, st.getStartTime());
+			jdbc.getPs().setInt(2, st.getId());
+			jdbc.getPs().executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

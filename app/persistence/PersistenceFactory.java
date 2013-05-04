@@ -7,6 +7,7 @@ import models.Customer;
 import models.Movie;
 import models.Place;
 import models.Session;
+import models.SessionType;
 
 public interface PersistenceFactory {
 
@@ -24,4 +25,10 @@ public interface PersistenceFactory {
 	List<Place> getPlaceBySession(Integer id_session) throws SQLException;
 	boolean getAvaliability(int idSession, int seat) throws SQLException;
 	void newReservation(Place p) throws SQLException;
+	
+	void addMovie(Movie m) throws SQLException;
+	void updateMovie(Movie m) throws SQLException;
+	
+	void changePrice(SessionType st) throws SQLException;
+	void changeStartTime(SessionType st) throws SQLException;
 }
