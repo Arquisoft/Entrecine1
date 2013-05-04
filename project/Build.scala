@@ -12,7 +12,8 @@ object ApplicationBuild extends Build {
     javaCore,
     javaJdbc,
     javaEbean,
-    "org.hsqldb" % "hsqldb" % "2.0.0"
+    "org.hsqldb" % "hsqldb" % "2.0.0",
+    "org.neo4j" % "neo4j" % "1.9.RC1"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
