@@ -22,7 +22,7 @@ public class GraphDBHandler {
 
 	private GraphDatabaseService graphDb;
 	private ExecutionEngine exEngine;
-	
+
 
 	private final String USER_LOGIN = "Login";
 	private final String MOVIE_INDEX = "Rel_id";
