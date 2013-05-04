@@ -9,8 +9,13 @@ public class Place {
 	private double amount;
 	private Date paymentDate;
 
-	public Place( int id_session, int id_customer, int rowSeat,
-			int seat, String creditCard, double amount, Date paymentDate) {
+	public Place(int id_session, int seat) {
+		this.id_session = id_session;
+		this.seat = seat;
+	}
+	
+	public Place(int id_session, int id_customer, int seat, String creditCard,
+			double amount, Date paymentDate) {
 		super();
 		this.id_session = id_session;
 		this.id_customer = id_customer;

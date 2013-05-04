@@ -8,7 +8,7 @@ public class Session {
 	private Date startDate, endDate;
 
 	private Movie movie;
-	private String accesRoom;
+	private Room room;
 	
 	private SessionType sessionType;
 
@@ -21,12 +21,12 @@ public class Session {
 		this.sessionType = sessionType;
 	}
 
-	public String getAccesRoom() {
-		return accesRoom;
+	public Room getRoom() {
+		return room;
 	}
 
-	public void setAccesRoom(String accesRoom) {
-		this.accesRoom = accesRoom;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public Movie getMovie() {

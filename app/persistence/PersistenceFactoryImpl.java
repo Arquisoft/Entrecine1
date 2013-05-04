@@ -53,4 +53,15 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 		pj.newReservation(p);
 	}
 
+	@Override
+	public Session getSessionById(Integer id_session) throws SQLException {
+		return sj.getSessionById(id_session);
+	}
+
+	@Override
+	public List<Place> getPlaceBySession(Integer id_session)
+			throws SQLException {
+		return sj.getPlaceBySession(id_session);
+	}
+
 }

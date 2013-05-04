@@ -1,5 +1,6 @@
-@(message : String ,synopsis : String, sessions: List[Session])
-@main("Detalles") {
+@(message : String , s : Session, places : Array[Int]) 
+
+@main("Reservas"){
 
 <html>
 <head>
@@ -33,34 +34,37 @@
 				</ul>
 			</div>
 		</div>
+
 		<div class="cl">&nbsp;</div>
 		<div id="box">
 			<div class="head">
-				<h2>Detalles de la pelicula</h2>
-			</div>
-			<div class="name">
-				<p>@synopsis</p>
-			</div>
-			<div class="cl">&nbsp;</div>
-			<div class="head">
-				<h2>Sessiones disponibles</h2>
-			</div>
-			@for( s <- sessions) {
-			<ul>
-				<li>@s.getSessionType.getStartTime : 00h
-					@s.getSessionType.getName</li>
+				<h2>Detalles de la Sesion</h2>
+				<p>@s.getSessionType.getStartTime : 00h
+					@s.getSessionType.getName</p>
 				<p>Sala : @s.getId_room</p>
 				<p>Coste de la entrada : @s.getSessionType.getCost €</p>
-			</ul>
-			<br>
-			<form class="reserva" method="post" action="/reserve?id_session=@s.getId">
-				<input type="submit" name="botonReservar" value="Reservar" />
-			</form>
+			</div>
+			<div class="name"></div>
+			<div class="cl">&nbsp;</div>
+			<div class="head">
+				<h2>Plazas disponibles </h2>
+				<form class="reserva" method="post" action="payReserve">
+					<ul>
+					@for(i <- 1 until places.length+1){ 
+					  @if(places(i-1) != -1){
+						<li><input type='checkbox' name='place' value='@i'>Place @i</li>
+					  }else{
+					  	<li>Place @i</li>
+					  }
+					}
+					</ul>
+					<input type="submit" name="botonReservar" value="Pagar Reserva" />
+				</form>
+			
+			</div>
 			<br>
 			<div class="cl">&nbsp;</div>
 		</div>
-
-		}
 
 		<div id="footer">Copyright &copy; 2013 Entrecine - Todos los
 			derechos reservados</div>

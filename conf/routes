@@ -6,8 +6,9 @@
 GET     /	                        controllers.Application.index()
 POST    /                           controllers.Application.register()
 GET     /                           controllers.Application.details(id_movie: Integer)
-GET     /details                   controllers.Application.details(id_movie: Integer)
-POST    /details                    controllers.Application.register()
+GET     /details                    controllers.Application.details(id_movie: Integer)
+POST    /reserve			        controllers.Application.reserve(id_session: Integer)
+POST	/payReserve					controllers.Application.payReserve()
 
 
 # Map static resources from the /public folder to the /assets URL path
