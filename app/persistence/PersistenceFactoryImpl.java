@@ -13,6 +13,7 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	private SessionDAO sj = new SessionDAO();
 	private MovieDAO mj = new MovieDAO();
 
+	
 	@Override
 	public void setCustomer(Customer c) throws SQLException {
 		cj.setCustomer(c);

@@ -24,5 +24,4 @@ public interface PersistenceFactory {
 	List<Place> getPlaceBySession(Integer id_session) throws SQLException;
 	boolean getAvaliability(int idSession, int seat) throws SQLException;
 	void newReservation(Place p) throws SQLException;
-
 }

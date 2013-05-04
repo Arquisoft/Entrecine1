@@ -10,6 +10,7 @@ public class Session {
 	private Movie movie;
 	private Room room;
 	
+	
 	private SessionType sessionType;
 
 	public Session(int id_room, int id_movie, Date startDate, Date endDate, SessionType sessionType) {

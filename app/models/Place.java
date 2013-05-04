@@ -9,6 +9,7 @@ public class Place {
 	private double amount;
 	private Date paymentDate;
 
+	
 	public Place(int id_session, int seat) {
 		this.id_session = id_session;
 		this.seat = seat;
