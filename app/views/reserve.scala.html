@@ -1,4 +1,4 @@
-@(message : String , s : Session, places : Array[Int]) 
+@(message : String , s : Session, places : Array[Int])
 
 @main("Reservas"){
 
@@ -47,20 +47,19 @@
 			<div class="name"></div>
 			<div class="cl">&nbsp;</div>
 			<div class="head">
-				<h2>Plazas disponibles </h2>
-				<form class="reserva" method="post" action="payReserve">
-					<ul>
-					@for(i <- 1 until places.length+1){ 
-					  @if(places(i-1) != -1){
-						<li><input type='checkbox' name='place' value='@i'>Place @i</li>
-					  }else{
-					  	<li>Place @i</li>
-					  }
-					}
-					</ul>
-					<input type="submit" name="botonReservar" value="Pagar Reserva" />
-				</form>
-			
+				<h2>Plazas disponibles</h2>
+				<ul>
+					@for(i <- 1 until places.length+1){ @if(places(i-1) != -1){
+					<li>Seat @i
+						<form class="reserva" method="post"
+							action="payReserve?numSeat=@i">
+							<input type="submit" value="Comprar" />
+						</form>
+					</li> }else{
+					<li>Seat @i Ocupado</li> } }
+				</ul>
+
+
 			</div>
 			<br>
 			<div class="cl">&nbsp;</div>

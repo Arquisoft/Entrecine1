@@ -1,22 +1,22 @@
 package controllers;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import models.*;
 import persistence.PersistenceFactory;
 import persistence.PersistenceFactoryImpl;
 
-
 import play.mvc.*;
+
 
 import views.html.*;
 
 public class Application extends Controller {
 
-	private static Session cacheSession;
-	private static Customer cacheCustomer;
+	private static Session cacheSession=null;
+	private static Integer cacheSeat=null;
+	private static Customer cacheCustomer=null;;
 
 	public static Result index() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
@@ -68,14 +68,17 @@ public class Application extends Controller {
 		return ok(reserve.render(message, session, places));
 	}
 	
-	public static Result payReserve() {
-		PersistenceFactory pf = new PersistenceFactoryImpl();
-		Session session = cacheSession;
-		String message = "";
-
-		return ok(payReserve.render(message));
+	public static Result payReserve(Integer numSeat) {
+		cacheSeat = numSeat;		
+		return ok(payReserve.render("",cacheSession,cacheSeat,cacheCustomer));
 	}
 
+	public static Result payment(String creditCard) {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		
+		return redirect(routes.Application.index()); 
+	}
+	
 	public static Result register() {
 		return ok(register.render("Your new application is ready."));
 	}

@@ -1,4 +1,4 @@
-@(message : String ) 
+@(message : String, session: Session, seat: Integer, customer: Customer)
 
 @main("payReservas"){
 
@@ -38,13 +38,28 @@
 		<div class="cl">&nbsp;</div>
 		<div id="box">
 			<div class="head">
-				
+				<p>Pago de la reserva</p>
 			</div>
 			<div class="name"></div>
 			<div class="cl">&nbsp;</div>
 			<div class="head">
-				
-			
+				<form class=form method="GET" action="/payReserve/pay">
+					<div class=reg>
+						<p>Horario: @session.getSessionType.getStartTime : 00h
+							@session.getSessionType.getName</p>
+						<p>Silla: Place @seat</p>
+						<p>Lugar: @session.getRoom.getAccess</p>
+						<p>Coste de la entrada : @session.getSessionType.getCost €</p>
+						@if(customer == null){ 
+							Tarjeta de credito: <input type="text" name='creditCard'> 
+						}else{ 
+							Tarjeta de credito: <input type="text" name='creditCard' value=@customer.getCreditcard >
+						}
+						<INPUT type="submit" value="Enviar">
+					</div>
+				</form>
+				<br>
+
 			</div>
 			<br>
 			<div class="cl">&nbsp;</div>
