@@ -35,23 +35,6 @@ public class JdbcExecute {
 		return DriverManager.getConnection(URL, USER, PASS);
 		// return DB.getConnection();//no funciona.
 	}
-/*
-	public void setQuery(String query) throws SQLException {
-		con = getConnection();
-		ps = con.createStatement();
-		ps.executeUpdate(query);
-		con.close();
-		ps.close();
-	}
-
-	public ResultSet getQuery(String query) throws SQLException {
-		con = getConnection();
-		ps = con.createStatement();
-		rs = ps.executeQuery(query);
-		con.close();
-		ps.close();
-		return rs;
-	}*/
 
 	public void createStatement(String query) {
 		try {

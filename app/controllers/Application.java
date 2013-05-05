@@ -127,5 +127,17 @@ public class Application extends Controller {
 	public static Result register() {
 		return ok(register.render("Your new application is ready."));
 	}
+	
+	public static Result controlPanel() {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		List<SessionType> sessionsTypes = new ArrayList<SessionType>();
+		message = "";
+		try {
+			sessionsTypes = pf.getSessionsTypes();
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		}
+		return ok(controlPanel.render(message, sessionsTypes));
+	}
 
 }

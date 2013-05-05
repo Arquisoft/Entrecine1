@@ -1,0 +1,99 @@
+@(message : String , sessionsTypes : List[SessionType])
+@main("Control Panel") {
+
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="assets/stylesheets/main.css"
+	type="text/css" />
+</head>
+<body>
+	<div id="main">
+		<div class="login">
+			<form class="registro" method="post" action="">
+				<label>Usuario:</label> <input type="text" name="nombre" value="" />
+				<label>Password:</label> <input type="password" name="password"
+					value="" /> <input type="submit" name="botonEntrar" value="Entrar" /><input
+					type="submit" name="botonRegistrar" value="Registrar"
+					href="register" />
+				<p>
+					<a href="">¿Olvidaste tu contraseña retarded?</a>
+				</p>
+			</form>
+		</div>
+		<div id="header">
+			<h1 id="logo">
+				<a href="/"><image src="assets/images/logo.png"></a>
+			</h1>
+			<div id="navigation">
+				<ul>
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Reservas</a></li>
+					<li><a href="#">Sobre nosotros</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="cl">&nbsp;</div>
+		<div id="box">
+			<div class="head">
+				<h2>Panel de control</h2>
+			</div>
+			<div class="cl">&nbsp;</div>
+            <center>
+            <table>
+            	<tr>
+            	<td>
+                    <div class="head">
+                        <h3>Administración de sesiones</h3>
+                    </div>
+	            </td>
+                <td>
+                    <div class="head">
+                        <h3>Administración de películas: Añadir</h3>
+                    </div>
+	            </td>
+                <tr>
+                <td>
+                	@for(st <- sessionsTypes) {
+                    <p><input type="radio" name="sessionsTypes" value="@st.getId"> Tipo de sesión: @st.getName</p><p>Hora de comienzo: @st.getStartTime</p><p>Precio: @st.getCost</p><br>
+                    }
+                    <div class=reg>
+                        <label for="name">Hora comienzo</label> <input type="text" id="horaComienzo" />
+                    </div>
+                    <div class=reg>
+                    	<label for="name">Precio</label> <input type="text" id="precio" />
+                    </div>
+                    <input type="submit" value="Modificar" />
+                </td>
+                <td>
+                	<form class="register" form action="">
+                        <div class=reg>
+                            <label for="name">Nombre</label> <input type="text" id="nombre" />
+                        </div>
+                        <div class=reg>
+                            <label for="category">Categoría</label> <input type="text"
+                                id="categoria"/>
+                        </div>
+                        <div class=reg>
+                            <label for="synopsis">Detalles</label> <input type="text" id="detalles" />
+                        </div>
+                        <div class=reg>
+                            <label for="poster">Poster</label> <input
+                                type="text" id="archivoPoster" />
+                        </div>
+					</form>
+                    <input type="submit" value="Reservar" formaction=""/>
+                </td>
+    	        </tr>
+			<br>
+            </table>
+            </center>
+			<div class="cl">&nbsp;</div>
+		</div>
+
+		<div id="footer">Copyright &copy; 2013 Entrecine - Todos los
+			derechos reservados</div>
+	</div>
+</body>
+</html>
+}

@@ -5,10 +5,9 @@ public class Movie {
 	private Integer id;
 	private String name, category, synopsis, poster;
 
-	public Movie(Integer id, String name, String category, String synopsis,
+	public Movie(String name, String category, String synopsis,
 			String poster) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.category = category;
 		this.synopsis = synopsis;

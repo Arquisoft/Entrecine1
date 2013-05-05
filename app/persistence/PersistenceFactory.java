@@ -29,6 +29,7 @@ public interface PersistenceFactory {
 	void addMovie(Movie m) throws SQLException;
 	void updateMovie(Movie m) throws SQLException;
 	
+	List<SessionType> getSessionsTypes() throws SQLException;
 	void changePrice(SessionType st) throws SQLException;
 	void changeStartTime(SessionType st) throws SQLException;
 }

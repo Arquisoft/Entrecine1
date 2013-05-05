@@ -12,7 +12,7 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	private PlaceDAO pj = new PlaceDAO();
 	private SessionDAO sj = new SessionDAO();
 	private MovieDAO mj = new MovieDAO();
-
+	private SessionTypeDAO st = new SessionTypeDAO();
 	
 	@Override
 	public void setCustomer(Customer c) throws SQLException {
@@ -68,28 +68,26 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 
 	@Override
 	public void addMovie(Movie m) throws SQLException {
-		// TODO Auto-generated method stub
 		mj.addMovie(m);
-		
 	}
 
 	@Override
 	public void updateMovie(Movie m) throws SQLException {
-		// TODO Auto-generated method stub
 		mj.updateMovie(m);
-		
 	}
 
 	@Override
 	public void changePrice(SessionType st) throws SQLException {
-		// TODO Auto-generated method stub
-		sj.changePrice(st);
+		this.st.changePrice(st);
 	}
 
 	@Override
 	public void changeStartTime(SessionType st) throws SQLException {
-		// TODO Auto-generated method stub
-		sj.changeStartTime(st);
+		this.st.changeStartTime(st);
 	}
 
+	@Override
+	public List<SessionType> getSessionsTypes() throws SQLException {
+		return st.getSessionsTypes();
+	}
 }

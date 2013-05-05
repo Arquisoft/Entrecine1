@@ -23,7 +23,6 @@ public class GraphDBHandler {
 	private GraphDatabaseService graphDb;
 	private ExecutionEngine exEngine;
 
-
 	private final String USER_LOGIN = "Login";
 	private final String MOVIE_INDEX = "Rel_id";
 	private final String MOVIE_TITLE = "Titulo";
@@ -37,6 +36,7 @@ public class GraphDBHandler {
 		registerShutdownHook(graphDb);
 		exEngine = new ExecutionEngine(graphDb);
 	}
+
 	// Testing constructor
 	private GraphDBHandler(GraphDatabaseService testDb) {
 		graphDb = testDb;
@@ -51,8 +51,9 @@ public class GraphDBHandler {
 		}
 		return graphHandler;
 	}
-	//For testing purpose
-	public static GraphDBHandler getConnection( GraphDatabaseService testDb) {
+
+	// For testing purpose
+	public static GraphDBHandler getConnection(GraphDatabaseService testDb) {
 		// TODO Auto-generated method stub
 		graphHandler = new GraphDBHandler(testDb);
 		return graphHandler;
@@ -80,7 +81,7 @@ public class GraphDBHandler {
 	public List<Movie> getRecommendations(Customer user) {
 		Transaction tx = graphDb.beginTx();
 		Node userNode;
-		List<Movie> pelis=new ArrayList<Movie>();
+		List<Movie> pelis = new ArrayList<Movie>();
 		try {
 			userNode = findUserNode(user);
 			tx.success();
@@ -92,17 +93,17 @@ public class GraphDBHandler {
 				.execute("start n=node("
 						+ userNode.getId()
 						+ ") match n-->()<--o, n-->()<--o, o-->k where length(n--k)=0 return distinct k");
-		 Iterator<Node> n_column = result.columnAs( "k" );
-	        for ( Node node : IteratorUtil.asIterable( n_column ) )
-	        {
-	            // note: we're grabbing the name property from the node,
-	            // not from the n.name in this case.
-	        	int id=(Integer)node.getProperty(MOVIE_INDEX);
-	        	String titulo=(String) node.getProperty(MOVIE_TITLE);
-	        	String cartel=(String) node.getProperty(MOVIE_IMG);
-	        	Movie peli= new Movie(id, titulo, null, null, cartel);
-	            pelis.add(peli);
-	        }
+		Iterator<Node> n_column = result.columnAs("k");
+		for (Node node : IteratorUtil.asIterable(n_column)) {
+			// note: we're grabbing the name property from the node,
+			// not from the n.name in this case.
+			int id = (Integer) node.getProperty(MOVIE_INDEX);
+			String titulo = (String) node.getProperty(MOVIE_TITLE);
+			String cartel = (String) node.getProperty(MOVIE_IMG);
+			Movie peli = new Movie(titulo, null, null, cartel);
+			peli.setId(id);
+			pelis.add(peli);
+		}
 		return pelis;
 	}
 
