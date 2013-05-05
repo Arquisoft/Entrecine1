@@ -10,6 +10,7 @@ GET     /details                    controllers.Application.details(id_movie: In
 POST    /reserve			        controllers.Application.reserve(id_session: Integer)
 POST	/payReserve					controllers.Application.payReserve(numSeat: Integer)
 GET 	/payReserve/pay				controllers.Application.payment(creditCard: String)
+GET 	/payReserve/pay/result		controllers.Application.paymentResult()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

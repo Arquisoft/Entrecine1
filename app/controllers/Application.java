@@ -2,6 +2,7 @@ package controllers;
 
 import java.sql.SQLException;
 import java.util.*;
+import java.sql.Date;
 
 import models.*;
 import persistence.PersistenceFactory;
@@ -9,22 +10,21 @@ import persistence.PersistenceFactoryImpl;
 
 import play.mvc.*;
 
-
 import views.html.*;
 
 public class Application extends Controller {
 
-	private static Session cacheSession=null;
-	private static Integer cacheSeat=null;
-	private static Customer cacheCustomer=null;;
+	private static Session cacheSession = null;
+	private static Integer cacheSeat = null;
+	private static Customer cacheCustomer = null;
+	private static String message = "";
 
 	public static Result index() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<Movie> lm = new ArrayList<Movie>();
-		String message = "";
+		message = "";
 		try {
 			lm = pf.getMovies();
-			message = "Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
@@ -34,13 +34,11 @@ public class Application extends Controller {
 	public static Result details(Integer id_movie) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<Session> ls = new ArrayList<Session>();
-		String message = "";
+		message = "";
 		String synopsis = "";
 		try {
 			ls = pf.getSessionsByMovie(id_movie);
 			synopsis = pf.getSynopsis(id_movie);
-
-			message = " Exito";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
@@ -52,8 +50,7 @@ public class Application extends Controller {
 		List<Place> lp = new ArrayList<Place>();
 		int[] places = new int[1];
 		Session session = null;
-		String message = "";
-
+		message = "";
 		try {
 			session = pf.getSessionById(id_session);
 			cacheSession = session;
@@ -67,18 +64,59 @@ public class Application extends Controller {
 		}
 		return ok(reserve.render(message, session, places));
 	}
-	
+
 	public static Result payReserve(Integer numSeat) {
-		cacheSeat = numSeat;		
-		return ok(payReserve.render("",cacheSession,cacheSeat,cacheCustomer));
+		cacheSeat = numSeat;
+		message = "";
+		return ok(payReserve.render(message, cacheSession, cacheSeat,
+				cacheCustomer));
 	}
 
 	public static Result payment(String creditCard) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
-		
-		return redirect(routes.Application.index()); 
+		PaymentGateway pg = new PaymentGateway();
+		int idCustomer = 0;
+		boolean avaliability = true;
+		try {
+
+			if (!pg.payment(creditCard))
+				return ok(payReserve.render(
+						"ERROR: compruebe el numero de la targeta de credito",
+						cacheSession, cacheSeat, cacheCustomer));
+			avaliability = pf.getAvaliability(cacheSession.getId(), cacheSeat);
+			if (!avaliability)
+				return ok(payReserve.render(
+						"ERROR: la silla ya a sido reservada", cacheSession,
+						cacheSeat, cacheCustomer));
+
+			if (cacheCustomer != null)
+				idCustomer = cacheCustomer.getId();
+			Date fecha = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
+
+			pf.newReservation(new Place(cacheSession.getId(), idCustomer,
+					cacheSeat, creditCard, cacheSession.getSessionType()
+							.getCost(), fecha));
+			return redirect(routes.Application.paymentResult());
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		}
+
+		return ok(payReserve.render("ERROR: SQL: " + message, cacheSession,
+				cacheSeat, cacheCustomer));
 	}
-	
+
+	public static Result paymentResult() {
+		message = "";
+		int idCustomer = 0;
+		Date fecha = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
+
+		if (cacheCustomer != null)
+			idCustomer = cacheCustomer.getId();
+		
+		return ok(payResult.render(message, cacheSession, cacheSeat,
+				idCustomer, fecha));
+	}
+
 	public static Result register() {
 		return ok(register.render("Your new application is ready."));
 	}

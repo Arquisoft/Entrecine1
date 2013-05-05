@@ -6,24 +6,23 @@ import persistence.JdbcExecute;
 import models.Place;
 
 public class PlaceDAO {
-	
+
 	JdbcExecute jdbc;
-	
+
 	public PlaceDAO() {
 		jdbc = JdbcExecute.getInstance();
 	}
 
 	public boolean getAvaliability(int idSession, int seat) {
-		String query = "select p.* " +
-						"from session s, place p " +
-						"where p.seat = ? and p.id_session = s.id and s.id = ?";
-		boolean taken = false;
+		String query = "select * from place where seat = ? and id_session = ?";
+		boolean taken = true;
 		try {
 			jdbc.createStatement(query);
-			jdbc.getPs().setInt(1, idSession);
-			jdbc.getPs().setInt(2, seat);
+			jdbc.getPs().setInt(1, seat);
+			jdbc.getPs().setInt(2, idSession);
 			jdbc.setRs(jdbc.getPs().executeQuery());
-			taken = jdbc.getRs().next();
+			if (jdbc.getRs().next())
+				taken = false;
 			jdbc.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -32,9 +31,9 @@ public class PlaceDAO {
 	}
 
 	public void newReservation(Place p) {
-		String query = "INSERT INTO " +
-						"Place('id_session', 'seat', 'id_customer', 'creditcard', 'amount', 'paymentdate')" +
-						" VALUES (?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO "
+				+ "Place(id_session, seat, id_customer, creditcard, amount,paymentdate)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			jdbc.createStatement(query);
 			jdbc.getPs().setInt(1, p.getId_session());
@@ -49,5 +48,5 @@ public class PlaceDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

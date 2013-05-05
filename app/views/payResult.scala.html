@@ -1,6 +1,5 @@
-@(message : String , s : Session, places : Array[Int])
-
-@main("Reservas"){
+@(message : String, session: Session, seat: Integer, customer: Integer,
+fecha : Date) @main("payReservasResult"){
 
 <html>
 <head>
@@ -38,27 +37,25 @@
 		<div class="cl">&nbsp;</div>
 		<div id="box">
 			<div class="head">
-				<h2>Detalles de la Sesion</h2>
-				<p>@s.getSessionType.getStartTime : 00h
-					@s.getSessionType.getName</p>
-				<p>Sala : @s.getId_room</p>
-				<p>Coste de la entrada : @s.getSessionType.getCost €</p>
+				<p>Pago de la reserva Exitoso</p>
 			</div>
 			<div class="name"></div>
 			<div class="cl">&nbsp;</div>
 			<div class="head">
-				<h2>Plazas disponibles</h2>
-				<ul>
-					@for(i <- 1 until places.length+1){ @if(places(i-1) != -1){
-					<li>Seat @i
-						<form class="reserva" method="post"
-							action="payReserve?numSeat=@i">
-							<input type="submit" value="Comprar" />
-						</form>
-					</li> }else{
-					<li>Seat @i Ocupado</li> } }
-				</ul>
-
+				<h3>@message</h3>
+				<form class=form method="GET" action="/payReserve/pay">
+					<div class=reg>
+						<p>Fecha de pago: @fecha.getTime</p>
+						<p>Horario: @session.getSessionType.getStartTime : 00h
+							@session.getSessionType.getName</p>
+						<p>Silla: Place @seat</p>
+						<p>Lugar: @session.getRoom.getAccess</p>
+						<p>Coste de la entrada : @session.getSessionType.getCost €</p>
+						<br>
+						<h3>Codigo de compra: @session.getId - @seat - @customer</h3>
+					</div>
+				</form>
+				<br>
 
 			</div>
 			<br>
