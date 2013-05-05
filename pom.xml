@@ -313,12 +313,13 @@
 		<developer>
 			<id>MariaGallegoGarcia</id>
 			<name>María Gallego García</name>
-			<email></email>
+			<email>uo159780@uniovi.es</email>
 			<organization>WESO-University of Oviedo</organization>
 			<organizationUrl>http://www.uniovi.es</organizationUrl>
 			<roles>
 				<role>Developer</role>
 				<role>Student</role>
+				<role>Webmistress</role>
 			</roles>
 			<timezone>2</timezone>
 			<properties />
