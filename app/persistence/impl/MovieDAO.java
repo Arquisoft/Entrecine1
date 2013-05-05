@@ -36,19 +36,21 @@ public class MovieDAO {
 		return listMovies;
 	}
 
-	public String getSynopsis(Integer id_movie) throws SQLException {
-		String query = "select m.synopsis " +
+	public Movie getMovieById(Integer id_movie) throws SQLException {
+		String query = "select m.* " +
 						"from movie m where m.id=?";
 		jdbc.createStatement(query);
 		jdbc.getPs().setInt(1, id_movie);
 		jdbc.setRs(jdbc.getPs().executeQuery());
 
-		String synopsis = "";
+		Movie movie = null;
 
-		while (jdbc.getRs().next()) {
-			synopsis = jdbc.getRs().getString("synopsis");
+		if (jdbc.getRs().next()) {
+			movie = new Movie(jdbc.getRs().getInt("ID"), jdbc.getRs().getString(
+					"name"), jdbc.getRs().getString("category"), jdbc.getRs()
+					.getString("synopsis"), jdbc.getRs().getString("poster"));
 		}
-		return synopsis;
+		return movie;
 	}
 	
 	public void addMovie(Movie m) throws SQLException{

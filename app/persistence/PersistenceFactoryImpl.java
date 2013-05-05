@@ -35,8 +35,8 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	}
 
 	@Override
-	public String getSynopsis(Integer id_movie) throws SQLException {
-		return mj.getSynopsis(id_movie);
+	public Movie getMovieById(Integer id_movie) throws SQLException {
+		return mj.getMovieById(id_movie);
 	}
 
 	@Override
