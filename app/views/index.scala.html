@@ -1,4 +1,4 @@
-@(message : String , movies: List[Movie]) @main("entreCINE") {
+@(message : String , movies: List[Movie], nombre: String) @main("entreCINE") {
 
 <html>
 <head>
@@ -9,8 +9,9 @@
 <body>
 	<div id="main">
 		<div class="login">
-			<form class="registro" method="post" action="">
-				<label>Usuario:</label> <input type="text" name="nombre" value="" />
+		@if(nombre==""){
+			<form class="registro" method="GET" action="/login">
+				<label>Usuario:</label> <input type="text" name="name" value="" />
 				<label>Password:</label> <input type="password" name="password"
 					value="" /> <input type="submit" name="botonEntrar" value="Entrar" /><input
 					type="submit" name="botonRegistrar" value="Registrar"
@@ -19,6 +20,9 @@
 					<a href="">¿Olvidaste tu contraseña retarded?</a>
 				</p>
 			</form>
+			}else{
+			<p>¡Bienvenido, mi querido @nombre!</p>
+			}
 		</div>
 		<div id="header">
 			<h1 id="logo">

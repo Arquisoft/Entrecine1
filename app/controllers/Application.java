@@ -18,6 +18,7 @@ public class Application extends Controller {
 	private static Movie cacheMovie = null;
 	private static Integer cacheSeat = null;
 	private static String message = "";
+	private static String nombre = "";
 
 	public static Result index() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
@@ -28,7 +29,20 @@ public class Application extends Controller {
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(index.render(message, lm));
+		return ok(index.render(message, lm, nombre));
+	}
+
+	public static Result login(String name, String password) {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		Customer c = null;
+		message = "";
+		try {
+			c = pf.getCustomer(name, password);
+			nombre = c.getSurnames();
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		}
+		return redirect(routes.Application.index());
 	}
 
 	public static Result details(Integer id_movie) {
@@ -81,9 +95,9 @@ public class Application extends Controller {
 		try {
 
 			if (!pg.payment(creditCard))
-				return ok(payReserve.render(
-						"ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
-						cacheSession, cacheSeat, cacheCustomer));
+				return ok(payReserve
+						.render("ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
+								cacheSession, cacheSeat, cacheCustomer));
 			avaliability = pf.getAvaliability(cacheSession.getId(), cacheSeat);
 			if (!avaliability)
 				return ok(payReserve.render(
@@ -127,7 +141,7 @@ public class Application extends Controller {
 	public static Result register() {
 		return ok(register.render("Your new application is ready."));
 	}
-	
+
 	public static Result controlPanel() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<SessionType> sessionsTypes = new ArrayList<SessionType>();

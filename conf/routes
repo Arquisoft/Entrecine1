@@ -4,7 +4,7 @@
 
 # Home page
 GET     /	                        controllers.Application.index()
-POST    /                           controllers.Application.register()
+GET   	/login                      controllers.Application.login(name: String, password: String)
 GET     /                           controllers.Application.details(id_movie: Integer)
 GET     /details                    controllers.Application.details(id_movie: Integer)
 POST    /reserve			        controllers.Application.reserve(id_session: Integer)
