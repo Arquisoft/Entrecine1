@@ -130,9 +130,27 @@ h1#logo {
 	margin-left: 80px;
 }
 
-.reg label {
+.registerForm {
+	text-align: center;
+	border: 1px;
+}
+
+.registerForm label {
 	width: 35%;
-	margin-left: 80px;
+	float: left;
+	margin-left: 90px;
+	text-align: center;
+}
+
+.register input {
+	text-align: center;
+}
+
+.register label {
+	width: 35%;
+	float: left;
+	margin-left: 30px;
+	text-align: center;
 }
 
 input:focus {
