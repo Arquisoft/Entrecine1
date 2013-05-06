@@ -12,6 +12,8 @@ POST	/payReserve					controllers.Application.payReserve(numSeat: Integer)
 GET 	/payReserve/pay				controllers.Application.payment(creditCard: String)
 GET 	/payReserve/pay/result		controllers.Application.paymentResult()
 GET 	/controlPanel				controllers.Application.controlPanel()
+GET 	/controlPanel/newMovie		controllers.Application.newMovie(name: String, category: String, synopsis: String, poster: String)
+GET 	/controlPanel/updateSession	controllers.Application.updateSession(idSession: Integer, startTime: Integer, amount: Double)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

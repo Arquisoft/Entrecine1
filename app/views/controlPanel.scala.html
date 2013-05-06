@@ -54,35 +54,38 @@
 	            </td>
                 <tr>
                 <td>
+                	<form class="register" action="/controlPanel/updateSession">					
                 	@for(st <- sessionsTypes) {
-                    <p><input type="radio" name="sessionsTypes" value="@st.getId"> Tipo de sesión: @st.getName</p><p>Hora de comienzo: @st.getStartTime</p><p>Precio: @st.getCost</p><br>
+                    <p><input type="radio" name="idSession" value="@st.getId"> Tipo de sesión: @st.getName</p><p>Hora de comienzo: @st.getStartTime</p><p>Precio: @st.getCost</p><br>
                     }
                     <div class=reg>
-                        <label for="name">Hora comienzo</label> <input type="text" id="horaComienzo" />
+                        <label for="horaComienzo">Hora comienzo</label> <input type="number" name="startTime" />
                     </div>
                     <div class=reg>
-                    	<label for="name">Precio</label> <input type="text" id="precio" />
+                    	<label for="precio">Precio</label> <input type="number" name="amount" />
                     </div>
                     <input type="submit" value="Modificar" />
+                    </form>
                 </td>
                 <td>
-                	<form class="register" form action="">
+                	<form class="register" action="/controlPanel/newMovie">
                         <div class=reg>
-                            <label for="name">Nombre</label> <input type="text" id="nombre" />
+                            <label for="nombre">Nombre</label> <input type="text" name="name" />
                         </div>
                         <div class=reg>
-                            <label for="category">Categoría</label> <input type="text"
-                                id="categoria"/>
+                            <label for="categoria">Categoría</label> <input type="text"
+                                name="category"/>
                         </div>
                         <div class=reg>
-                            <label for="synopsis">Detalles</label> <input type="text" id="detalles" />
+                            <label for="detalles">Detalles</label> <input type="text" name="synopsis" />
                         </div>
                         <div class=reg>
-                            <label for="poster">Poster</label> <input
-                                type="text" id="archivoPoster" />
+                            <label for="archivoPoster">Poster</label> <input
+                                type="text" name="poster" />
                         </div>
+                        
+                    <center><input type="submit" value="Añadir" /></center>
 					</form>
-                    <input type="submit" value="Reservar" formaction=""/>
                 </td>
     	        </tr>
 			<br>

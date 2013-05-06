@@ -81,13 +81,13 @@ public class Application extends Controller {
 		try {
 
 			if (!pg.payment(creditCard))
-				return ok(payReserve.render(
-						"ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
-						cacheSession, cacheSeat, cacheCustomer));
+				return ok(payReserve
+						.render("ERROR: compruebe el numero de la tarjeta de crédito (debe empezar con cc)",
+								cacheSession, cacheSeat, cacheCustomer));
 			avaliability = pf.getAvaliability(cacheSession.getId(), cacheSeat);
 			if (!avaliability)
 				return ok(payReserve.render(
-						"ERROR: la silla ya a sido reservada", cacheSession,
+						"ERROR: la silla ya ha sido reservada", cacheSession,
 						cacheSeat, cacheCustomer));
 
 			Date fecha = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
@@ -127,7 +127,7 @@ public class Application extends Controller {
 	public static Result register() {
 		return ok(register.render("Your new application is ready."));
 	}
-	
+
 	public static Result controlPanel() {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		List<SessionType> sessionsTypes = new ArrayList<SessionType>();
@@ -138,6 +138,42 @@ public class Application extends Controller {
 			message = sqlE.getMessage();
 		}
 		return ok(controlPanel.render(message, sessionsTypes));
+	}
+
+	public static Result newMovie(String name, String category,
+			String synopsis, String poster) {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		try {
+			Movie movie = new Movie(name, category, synopsis, "assets/images/"
+					+ poster + ".jpg");
+			pf.addMovie(movie);
+			return redirect(routes.Application.controlPanel());
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+		return null;
+	}
+
+	public static Result updateSession(Integer idSession, Integer startTime,
+			Double amount) {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		try {
+			SessionType st = null;
+			for (int i = 0; i < pf.getSessionsTypes().size() - 1; i++)
+				if (pf.getSessionsTypes().get(i).getId() == idSession)
+					st = new SessionType(startTime, pf.getSessionsTypes()
+							.get(i).getName(), amount);
+			pf.changePrice(st);
+			pf.changeStartTime(st);
+			return redirect(routes.Application.controlPanel());
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+		return null;
 	}
 
 }
