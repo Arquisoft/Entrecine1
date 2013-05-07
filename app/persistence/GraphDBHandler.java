@@ -32,7 +32,7 @@ public class GraphDBHandler {
 
 	private GraphDBHandler() {
 		graphDb = new GraphDatabaseFactory()
-				.newEmbeddedDatabase("../data/graphDB/");
+				.newEmbeddedDatabase("./data/graphDB/");
 		registerShutdownHook(graphDb);
 		exEngine = new ExecutionEngine(graphDb);
 	}
