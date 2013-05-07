@@ -27,11 +27,13 @@ public class CustomerDAO {
 			jdbc.getPs().setString(1, login);
 			jdbc.getPs().setString(2, passw);
 			jdbc.setRs(jdbc.getPs().executeQuery());
-			while (jdbc.getRs().next())
-				customer = new Customer(jdbc.getRs().getString(1), jdbc.getRs()
-						.getString(2), jdbc.getRs().getString(3), jdbc.getRs()
-						.getString(4), jdbc.getRs().getString(5), jdbc.getRs()
-						.getString(6));
+			while (jdbc.getRs().next()){
+				customer = new Customer(jdbc.getRs().getString(2), jdbc.getRs()
+						.getString(3), jdbc.getRs().getString(4), jdbc.getRs()
+						.getString(5), jdbc.getRs().getString(6), jdbc.getRs()
+						.getString(7));
+				customer.setId(jdbc.getRs().getInt(1));
+			}
 			jdbc.close();
 		} catch (SQLException e) {
 			e.printStackTrace();

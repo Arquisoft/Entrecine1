@@ -34,11 +34,15 @@ public class Application extends Controller {
 
 	public static Result login(String name, String password) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
-		Customer c = null;
+		cacheCustomer = null;
 		message = "";
+		nombre = "";
 		try {
-			c = pf.getCustomer(name, password);
-			nombre = c.getSurnames();
+			cacheCustomer = pf.getCustomer(name, password);
+			if (cacheCustomer != null)
+				nombre = cacheCustomer.getSurnames();
+			else
+				message = "Login/password incorrectos";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
@@ -56,7 +60,7 @@ public class Application extends Controller {
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(details.render(message, cacheMovie.getSynopsis(), ls));
+		return ok(details.render(nombre, message, cacheMovie.getSynopsis(), ls));
 	}
 
 	public static Result reserve(Integer id_session) {
@@ -76,13 +80,13 @@ public class Application extends Controller {
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(reserve.render(message, session, places));
+		return ok(reserve.render(nombre, message, session, places));
 	}
 
 	public static Result payReserve(Integer numSeat) {
 		cacheSeat = numSeat;
 		message = "";
-		return ok(payReserve.render(message, cacheSession, cacheSeat,
+		return ok(payReserve.render(nombre, message, cacheSession, cacheSeat,
 				cacheCustomer));
 	}
 
@@ -96,11 +100,12 @@ public class Application extends Controller {
 
 			if (!pg.payment(creditCard))
 				return ok(payReserve
-						.render("ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
+						.render(nombre,
+								"ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
 								cacheSession, cacheSeat, cacheCustomer));
 			avaliability = pf.getAvaliability(cacheSession.getId(), cacheSeat);
 			if (!avaliability)
-				return ok(payReserve.render(
+				return ok(payReserve.render(nombre,
 						"ERROR: la silla ya ha sido reservada", cacheSession,
 						cacheSeat, cacheCustomer));
 
@@ -122,8 +127,8 @@ public class Application extends Controller {
 			message = e.getMessage();
 		}
 
-		return ok(payReserve.render("ERROR: SQL: " + message, cacheSession,
-				cacheSeat, cacheCustomer));
+		return ok(payReserve.render(nombre, "ERROR: SQL: " + message,
+				cacheSession, cacheSeat, cacheCustomer));
 	}
 
 	public static Result paymentResult() {
@@ -134,12 +139,13 @@ public class Application extends Controller {
 		if (cacheCustomer != null)
 			idCustomer = cacheCustomer.getId();
 
-		return ok(payResult.render(message, cacheSession, cacheSeat,
-				idCustomer, fecha));
+		return ok(payResult.render(nombre, message, cacheSession, cacheSeat,
+				idCustomer, fecha, cacheSession.getId() + "-" + cacheSeat + "-"
+						+ idCustomer));
 	}
 
 	public static Result register() {
-		return ok(register.render("Your new application is ready."));
+		return ok(register.render(nombre, "Your new application is ready."));
 	}
 
 	public static Result controlPanel() {
@@ -151,7 +157,7 @@ public class Application extends Controller {
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(controlPanel.render(message, sessionsTypes));
+		return ok(controlPanel.render(nombre, message, sessionsTypes));
 	}
 
 	public static Result newMovie(String name, String category,

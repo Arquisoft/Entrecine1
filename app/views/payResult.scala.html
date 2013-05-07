@@ -1,5 +1,5 @@
-@(message : String, session: Session, seat: Integer, customer: Integer,
-fecha : Date) @main("payReservasResult"){
+@(nombre: String ,message : String, session: Session, seat: Integer, customer: Integer,
+fecha : Date, codigoCompra : String) @main("payReservasResult"){
 
 <html>
 <head>
@@ -10,8 +10,10 @@ fecha : Date) @main("payReservasResult"){
 <body>
 	<div id="main">
 		<div class="login">
-			<form class="registro" method="post" action="">
-				<label>Usuario:</label> <input type="text" name="nombre" value="" />
+		<h3>@message</h3>
+		@if(nombre==""){
+			<form class="registro" method="GET" action="/login">
+				<label>Usuario:</label> <input type="text" name="name" value="" />
 				<label>Password:</label> <input type="password" name="password"
 					value="" /> <input type="submit" name="botonEntrar" value="Entrar" /><input
 					type="submit" name="botonRegistrar" value="Registrar"
@@ -20,6 +22,9 @@ fecha : Date) @main("payReservasResult"){
 					<a href="">¿Olvidaste tu contraseña retarded?</a>
 				</p>
 			</form>
+			}else{
+			<p>¡Bienvenido, mi querido @nombre!</p>
+			}
 		</div>
 		<div id="header">
 			<h1 id="logo">
@@ -52,7 +57,7 @@ fecha : Date) @main("payReservasResult"){
 						<p>Lugar: @session.getRoom.getAccess</p>
 						<p>Coste de la entrada : @session.getSessionType.getCost €</p>
 						<br>
-						<h3>Codigo de compra: @session.getId - @seat - @customer</h3>
+						<h3>Codigo de compra: @codigoCompra</h3>
 					</div>
 				</form>
 				<br>
