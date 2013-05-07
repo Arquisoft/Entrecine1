@@ -4,14 +4,20 @@
 
 # Home page
 GET     /	                        controllers.Application.index()
+GET		/logOut						controllers.Application.logOut()
 GET   	/login                      controllers.Application.login(name: String, password: String)
+GET		/register					controllers.Application.register()
+GET		/saveRegister				controllers.Application.saveRegister(name:String,surname:String,email:String,creditcard:String,login:String,password:String)
 GET     /                           controllers.Application.details(id_movie: Integer)
 GET     /details                    controllers.Application.details(id_movie: Integer)
 POST    /reserve			        controllers.Application.reserve(id_session: Integer)
 POST	/payReserve					controllers.Application.payReserve(numSeat: Integer)
 GET 	/payReserve/pay				controllers.Application.payment(creditCard: String)
 GET 	/payReserve/pay/result		controllers.Application.paymentResult()
-GET 	/controlPanel				controllers.Application.controlPanel()
+GET 	/controlPanel				controllers.Application.controlPanel(id_movie:String , id_session:String, place:String)
+POST 	/controlPanel				controllers.Application.controlPanel(id_movie:String , id_session:String, place:String)
+GET 	/controlPanel/pay			controllers.Application.controlPanelPay()
+GET 	/controlPanel/payCredit		controllers.Application.controlPanelPayCredit(creditCard:String)
 GET 	/controlPanel/newMovie		controllers.Application.newMovie(name: String, category: String, synopsis: String, poster: String)
 GET 	/controlPanel/updateSession	controllers.Application.updateSession(idSession: Integer, startTime: Integer, amount: Double)
 

@@ -8,13 +8,13 @@ import models.*;
 import persistence.*;
 
 import play.mvc.*;
-
 import views.html.*;
 
 public class Application extends Controller {
 
 	private static Session cacheSession = null;
 	private static Customer cacheCustomer = null;
+	private static SystemUser cacheSystem = null;
 	private static Movie cacheMovie = null;
 	private static Integer cacheSeat = null;
 	private static String message = "";
@@ -32,16 +32,30 @@ public class Application extends Controller {
 		return ok(index.render(message, lm, nombre));
 	}
 
+	public static Result logOut() {
+		cacheCustomer = null;
+		nombre = "";
+		return redirect(routes.Application.index());
+	}
+
 	public static Result login(String name, String password) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
 		cacheCustomer = null;
+		cacheSystem = null;
 		message = "";
 		nombre = "";
 		try {
-			cacheCustomer = pf.getCustomer(name, password);
-			if (cacheCustomer != null)
-				nombre = cacheCustomer.getSurnames();
-			else
+			if (!name.equals("") && !password.equals("")) {
+				cacheCustomer = pf.getCustomer(name, password);
+				cacheSystem = pf.getSystemUser(name, password);
+				if (cacheCustomer != null)
+					nombre = cacheCustomer.getSurnames();
+				else if (cacheSystem != null)
+					return redirect(routes.Application.controlPanel("-1", "-1",
+							"-1"));
+				else
+					message = "Login/password incorrectos";
+			} else
 				message = "Login/password incorrectos";
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
@@ -144,20 +158,138 @@ public class Application extends Controller {
 						+ idCustomer));
 	}
 
+	public static Result saveRegister(String name, String surname,
+			String email, String creditcard, String login, String password) {
+
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		try {
+			Customer c = new Customer(name, surname, email, creditcard, login,
+					password);
+
+			pf.newCustomer(c);
+			cacheCustomer = c;
+			nombre = name;
+			return redirect(routes.Application.index());
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+		return redirect(routes.Application.index());
+	}
+
 	public static Result register() {
 		return ok(register.render(nombre, "Your new application is ready."));
 	}
 
-	public static Result controlPanel() {
+	// ---------------------
+	private static List<Movie> systemMovies = new ArrayList<Movie>();
+	private static List<Session> systemSessions = new ArrayList<Session>();
+	private static List<SessionType> sessionsTypes = new ArrayList<SessionType>();
+	private static int[] systemPlaces = new int[1];
+	private static Integer systemIdMovie = -1;
+	private static Integer systemIdSession = -1;
+	public static Integer systemPlace = -1;
+
+	// ------------
+	public static Result controlPanelPayCredit(String creditCard) {
 		PersistenceFactory pf = new PersistenceFactoryImpl();
-		List<SessionType> sessionsTypes = new ArrayList<SessionType>();
-		message = "";
+		PaymentGateway pg = new PaymentGateway();
+
+		boolean avaliability = true;
 		try {
+
+			if (!pg.payment(creditCard))
+				return ok(controlPanel
+						.render("ERROR: compruebe el numero de la targeta de credito (debe empezar con cc)",
+								sessionsTypes, systemMovies, systemSessions,
+								systemPlaces));
+
+			if (!avaliability)
+				return ok(controlPanel.render(
+						"ERROR: la silla ya ha sido reservada", sessionsTypes,
+						systemMovies, systemSessions, systemPlaces));
+
+			Date fecha = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
+
+			pf.newReservation(new Place(cacheSession.getId(), 0, systemPlace,
+					creditCard, cacheSession.getSessionType().getCost(), fecha));
+
+			return redirect(routes.Application.controlPanel("-1", "-1", "-1"));
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+
+		return ok(controlPanel.render("ERROR: SQL", sessionsTypes,
+				systemMovies, systemSessions, systemPlaces));
+	}
+
+	public static Result controlPanelPay() {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		boolean avaliability = true;
+		try {
+
+			if (!avaliability)
+				return ok(controlPanel.render(
+						"ERROR: la silla ya ha sido reservada", sessionsTypes,
+						systemMovies, systemSessions, systemPlaces));
+
+			Date fecha = new Date(Calendar.YEAR, Calendar.MONTH, Calendar.DATE);
+
+			pf.newReservation(new Place(cacheSession.getId(), 0, systemPlace,
+					"", cacheSession.getSessionType().getCost(), fecha));
+
+			return redirect(routes.Application.controlPanel("-1", "-1", "-1"));
+		} catch (SQLException sqlE) {
+			message = sqlE.getMessage();
+		} catch (Exception e) {
+			message = e.getMessage();
+		}
+
+		return ok(controlPanel.render("ERROR: SQL", sessionsTypes,
+				systemMovies, systemSessions, systemPlaces));
+	}
+
+	public static Result controlPanel(String id_movie, String id_session,
+			String place) {
+		PersistenceFactory pf = new PersistenceFactoryImpl();
+		List<Place> systemlp = new ArrayList<Place>();
+		message = "";
+
+		try {
+
+			if (!place.equals("-1")) {
+				systemPlace = Integer.parseInt(place);
+			} else if (!id_session.equals("-1")) {
+				systemPlace = -1;
+				systemIdSession = Integer.parseInt(id_session);
+				cacheSession = pf.getSessionById(systemIdSession);
+				systemlp = pf.getPlaceBySession(systemIdSession);
+				systemPlaces = new int[cacheSession.getRoom()
+						.getSeatingCapacity()];
+				for (Place p : systemlp) {
+					systemPlaces[p.getSeat() - 1] = -1;
+				}
+			} else if (!id_movie.equals("-1")) {
+				systemPlace = -1;
+				systemIdSession = -1;
+				systemIdMovie = Integer.parseInt(id_movie);
+				systemSessions = pf.getSessionsByMovie(systemIdMovie);
+			} else {
+				systemSessions = new ArrayList<Session>();
+				systemPlaces = new int[1];
+				systemPlace = -1;
+			}
+
 			sessionsTypes = pf.getSessionsTypes();
+			systemMovies = pf.getMovies();
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		}
-		return ok(controlPanel.render(nombre, message, sessionsTypes));
+		return ok(controlPanel.render(message, sessionsTypes, systemMovies,
+				systemSessions, systemPlaces));
 	}
 
 	public static Result newMovie(String name, String category,
@@ -167,7 +299,7 @@ public class Application extends Controller {
 			Movie movie = new Movie(name, category, synopsis, "assets/images/"
 					+ poster + ".jpg");
 			pf.addMovie(movie);
-			return redirect(routes.Application.controlPanel());
+			return redirect(routes.Application.controlPanel("-1", "-1", "-1"));
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		} catch (Exception e) {
@@ -187,7 +319,7 @@ public class Application extends Controller {
 							.get(i).getName(), amount);
 			pf.changePrice(st);
 			pf.changeStartTime(st);
-			return redirect(routes.Application.controlPanel());
+			return redirect(routes.Application.controlPanel("-1", "-1", "-1"));
 		} catch (SQLException sqlE) {
 			message = sqlE.getMessage();
 		} catch (Exception e) {

@@ -9,8 +9,8 @@
 <body>
 	<div id="main">
 		<div class="login">
-		<h3>@message</h3>
-		@if(nombre==""){
+			<h3>@message</h3>
+			@if(nombre==""){
 			<form class="registro" method="GET" action="/login">
 				<label>Usuario:</label> <input type="text" name="name" value="" />
 				<label>Password:</label> <input type="password" name="password"
@@ -23,7 +23,7 @@
 			</form>
 			}else{
 			<p>¡Bienvenido, mi querido @nombre!</p>
-			}
+			<a href="logOut">Cerrar Session</a> }
 		</div>
 		<div id="header">
 			<h1 id="logo">
@@ -44,28 +44,28 @@
 				<h2>Registro</h2>
 			</div>
 
-			<form class=form action="">
-					<div class=reg>
-						<label for="name">Nombre</label> <input type="text" id="nombre" />
-					</div>
-					<div class=reg>
-						<label for="surname">Apellidos</label> <input type="text"
-							id="apellidos"/>
-					</div>
-					<div class=reg>
-						<label for="email">Email</label> <input type="text" id="nombre" />
-					</div>
-					<div class=reg>
-						<label for="creditcard">Tarjeta de credito</label> <input
-							type="text" id="nombre" />
-					</div>
-					<div class=reg>
-						<label for="password">Password</label> <input type="password"
-							id="nombre" />
-					</div>
-					<div class=reg>
-						<INPUT type="submit" value="Enviar"> <INPUT type="reset">
-					</div>
+			<form class=form action="saveRegister">
+				<div class=reg>
+					<input type="text" name="name" />
+				</div>
+				<div class=reg>
+					<input type="text" name="surname" />
+				</div>
+				<div class=reg>
+					<input type="text" name="email" />
+				</div>
+				<div class=reg>
+					<input type="text" name="creditcard" />
+				</div>
+				<div class=reg>
+					<input type="text" name="login" />
+				</div>
+				<div class=reg>
+					<input type="password" name="password" />
+				</div>
+				<div class=reg>
+					<INPUT type="submit" value="Enviar">
+				</div>
 			</form>
 			<br>
 			<div class="cl">&nbsp;</div>

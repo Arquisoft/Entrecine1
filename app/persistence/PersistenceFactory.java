@@ -3,11 +3,7 @@ package persistence;
 import java.sql.SQLException;
 import java.util.List;
 
-import models.Customer;
-import models.Movie;
-import models.Place;
-import models.Session;
-import models.SessionType;
+import models.*;
 
 public interface PersistenceFactory {
 
@@ -32,4 +28,6 @@ public interface PersistenceFactory {
 	List<SessionType> getSessionsTypes() throws SQLException;
 	void changePrice(SessionType st) throws SQLException;
 	void changeStartTime(SessionType st) throws SQLException;
+	
+	SystemUser getSystemUser(String login, String passw);
 }

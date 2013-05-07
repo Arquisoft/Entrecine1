@@ -1,4 +1,6 @@
-@(nombre: String ,message : String , sessionsTypes : List[SessionType]) @main("ControlPanel") {
+@(message : String , sessionsTypes : List[SessionType], movies :
+List[Movie], sessions : List[Session], places : Array[Int])
+@main("ControlPanel") {
 
 <html>
 <head>
@@ -9,8 +11,7 @@
 <body>
 	<div id="main">
 		<div class="login">
-		<h3>@message</h3>
-		@if(nombre==""){
+			<h3>@message</h3>
 			<form class="registro" method="GET" action="/login">
 				<label>Usuario:</label> <input type="text" name="name" value="" />
 				<label>Password:</label> <input type="password" name="password"
@@ -21,9 +22,6 @@
 					<a href="">¿Olvidaste tu contraseña retarded?</a>
 				</p>
 			</form>
-			}else{
-			<p>¡Bienvenido, mi querido @nombre!</p>
-			}
 		</div>
 		<div id="header">
 			<h1 id="logo">
@@ -108,7 +106,84 @@
 			</center>
 			<div class="cl">&nbsp;</div>
 		</div>
+		<div id="box">
 
+			<h3>@message</h3>
+			<table>
+				<tr>
+					<td>
+						<div class="headTable">
+							<h3>Peliculas</h3>
+							<p>__________________________________</p>
+						</div>
+					</td>
+					<td>
+						<div class="headTable">
+							<h3>Sessiones</h3>
+							<p>__________________________________</p>
+						</div>
+					</td>
+					<td>
+						<div class="headTable">
+							<h3>Asientos</h3>
+							<p>__________________________________</p>
+						</div>
+					</td>
+					<td>
+						<div class="headTable">
+							<h3>Pago</h3>
+							<p>__________________________________</p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<ul>
+							@for(m <- movies){
+							<li><a
+								href="controlPanel?id_movie=@m.getId&id_session=-1&place=-1">@m.getName</a></li>
+							}
+						</ul>
+					</td>
+					<td>@for( s <- sessions) {
+						<ul>
+							<li>@s.getSessionType.getStartTime : 00h
+								@s.getSessionType.getName</li>
+							<p>Sala : @s.getId_room</p>
+							<p>Coste de la entrada : @s.getSessionType.getCost €</p>
+						</ul> <br>
+						<form class="reserva" method="post"
+							action="controlPanel?id_movie=-1&id_session=@s.getId&place=-1">
+							<input type="submit" value="Reservar" />
+						</form> }
+					</td>
+					<td>@if(places.length>1){
+						<ul>
+							@for(i <- 1 until places.length+1){ @if(places(i-1) != -1){
+							<li>Seat @i
+								<form class="reserva" method="post"
+									action="controlPanel?id_movie=-1&id_session=-1&place=@i">
+									<input type="submit" value="Comprar" />
+								</form>
+							</li> }else{
+							<li>Seat @i Ocupado</li> } }
+						</ul> }
+					</td>
+					<td>@if(Application.systemPlace != -1){
+						<form class=form method="GET" action="/controlPanel/payCredit">
+							<input type="text" name='creditCard'> <INPUT
+								type="submit" value="Pago con tarjeta"> 
+						</form> <br>
+						<form class=form method="GET" action="/controlPanel/pay">
+							<INPUT type="submit" value="Pago">
+						</form>
+						}
+					</td>
+
+				</tr>
+			</table>
+
+		</div>
 		<div id="footer">Copyright &copy; 2013 Entrecine - Todos los
 			derechos reservados</div>
 	</div>

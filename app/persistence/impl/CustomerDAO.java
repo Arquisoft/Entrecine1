@@ -8,26 +8,21 @@ import models.Customer;
 public class CustomerDAO {
 
 	JdbcExecute jdbc;
-	
+
 	public CustomerDAO() {
 		jdbc = JdbcExecute.getInstance();
 	}
 
-	public void setCustomer(Customer c) {
-
-	}
-
 	public Customer getCustomer(String login, String passw) {
-		String query = "select * " +
-				"from customer " +
-				"where login = ? and passw = ?";
+		String query = "select * " + "from customer "
+				+ "where login = ? and passw = ?";
 		Customer customer = null;
 		try {
 			jdbc.createStatement(query);
 			jdbc.getPs().setString(1, login);
 			jdbc.getPs().setString(2, passw);
 			jdbc.setRs(jdbc.getPs().executeQuery());
-			while (jdbc.getRs().next()){
+			while (jdbc.getRs().next()) {
 				customer = new Customer(jdbc.getRs().getString(2), jdbc.getRs()
 						.getString(3), jdbc.getRs().getString(4), jdbc.getRs()
 						.getString(5), jdbc.getRs().getString(6), jdbc.getRs()
@@ -41,10 +36,10 @@ public class CustomerDAO {
 		return customer;
 	}
 
-	public void newCustomer(Customer c){
-		String query = "INSERT INTO " +
-				"Place('name', 'surnames', 'email', 'creditcard', 'login', 'passw')" +
-				" VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public void newCustomer(Customer c) {
+		String query = "INSERT INTO "
+				+ "customer (name, surnames, email, creditcard, login, passw)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		try {
 			jdbc.createStatement(query);
 			jdbc.getPs().setString(1, c.getName());

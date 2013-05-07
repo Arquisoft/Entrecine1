@@ -1,12 +1,12 @@
 package models;
 
-public class SysteUser {
+public class SystemUser {
 
 	private int id;
 	private String login, passw, type;
 	private boolean mSale, mSession, mMovies;
 
-	public SysteUser(String login, String passw, String type,
+	public SystemUser(String login, String passw, String type,
 			boolean mSale, boolean mSession, boolean mMovies) {
 		super();
 		this.login = login;

@@ -13,7 +13,8 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	private SessionDAO sj = new SessionDAO();
 	private MovieDAO mj = new MovieDAO();
 	private SessionTypeDAO st = new SessionTypeDAO();
-	
+	private SystemUserDAO su = new SystemUserDAO();
+
 	@Override
 	public void setCustomer(Customer c) throws SQLException {
 		cj.setCustomer(c);
@@ -89,5 +90,10 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	@Override
 	public List<SessionType> getSessionsTypes() throws SQLException {
 		return st.getSessionsTypes();
+	}
+
+	@Override
+	public SystemUser getSystemUser(String login, String passw) {
+		return su.getSystemUser(login, passw);
 	}
 }
