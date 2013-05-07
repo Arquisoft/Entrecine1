@@ -7,10 +7,8 @@ import models.*;
 
 public interface PersistenceFactory {
 
-	void setCustomer(Customer c) throws SQLException;
 	Customer getCustomer(String login, String passw) throws SQLException;
 	void newCustomer(Customer c) throws SQLException;
-
 	
 	List<Movie> getMovies() throws SQLException;
 	Movie getMovieById(Integer id_movie) throws SQLException;

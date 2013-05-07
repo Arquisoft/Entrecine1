@@ -16,12 +16,6 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 	private SystemUserDAO su = new SystemUserDAO();
 
 	@Override
-	public void setCustomer(Customer c) throws SQLException {
-		cj.setCustomer(c);
-	}
-
-	
-	@Override
 	public Customer getCustomer(String login, String passw) throws SQLException {
 		return cj.getCustomer(login, passw);
 	}
