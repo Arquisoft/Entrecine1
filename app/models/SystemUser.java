@@ -2,6 +2,7 @@ package models;
 
 public class SystemUser {
 
+	
 	private int id;
 	private String login, passw, type;
 	private boolean mSale, mSession, mMovies;

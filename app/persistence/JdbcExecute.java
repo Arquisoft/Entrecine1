@@ -11,6 +11,7 @@ public class JdbcExecute {
 	private static String USER = "sa";
 	private static String PASS = "";
 
+	
 	private Connection con;
 	private ResultSet rs;
 	private PreparedStatement ps ;

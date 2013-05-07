@@ -15,7 +15,6 @@ public interface PersistenceFactory {
 	List<Movie> getMovies() throws SQLException;
 	Movie getMovieById(Integer id_movie) throws SQLException;
 	List<Session> getSessionsByMovie(Integer id_movie) throws SQLException;
-
 	
 	Session getSessionById(Integer id_session) throws SQLException;
 	List<Place> getPlaceBySession(Integer id_session) throws SQLException;

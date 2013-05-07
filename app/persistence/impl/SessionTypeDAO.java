@@ -17,6 +17,7 @@ public class SessionTypeDAO {
 		jdbc = JdbcExecute.getInstance();
 	}
 
+	
 	public List<SessionType> getSessionsTypes() {
 		List<SessionType> listSessionsTypes = new ArrayList<SessionType>();
 		SessionType sessionType;

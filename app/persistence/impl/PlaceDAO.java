@@ -9,6 +9,7 @@ public class PlaceDAO {
 
 	JdbcExecute jdbc;
 
+	
 	public PlaceDAO() {
 		jdbc = JdbcExecute.getInstance();
 	}

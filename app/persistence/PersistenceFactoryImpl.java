@@ -20,6 +20,7 @@ public class PersistenceFactoryImpl implements PersistenceFactory {
 		cj.setCustomer(c);
 	}
 
+	
 	@Override
 	public Customer getCustomer(String login, String passw) throws SQLException {
 		return cj.getCustomer(login, passw);

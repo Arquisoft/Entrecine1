@@ -13,6 +13,7 @@ public class SystemUserDAO {
 		jdbc = JdbcExecute.getInstance();
 	}
 
+	
 	public SystemUser getSystemUser(String login, String passw) {
 		String query = "select * " +
 				"from systemUser " +

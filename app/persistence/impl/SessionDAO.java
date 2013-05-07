@@ -17,6 +17,7 @@ public class SessionDAO {
 		jdbc = JdbcExecute.getInstance();
 	}
 
+	
 	public List<Session> getSessionsByMovie(int id_movie) {
 		List<Session> listSessions = new ArrayList<Session>();
 		Session session;

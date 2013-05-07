@@ -68,6 +68,7 @@ public class Application extends Controller {
 		List<Session> ls = new ArrayList<Session>();
 		message = "";
 
+		
 		try {
 			ls = pf.getSessionsByMovie(id_movie);
 			cacheMovie = pf.getMovieById(id_movie);

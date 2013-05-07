@@ -9,6 +9,7 @@ public class CustomerDAO {
 
 	JdbcExecute jdbc;
 
+	
 	public CustomerDAO() {
 		jdbc = JdbcExecute.getInstance();
 	}
